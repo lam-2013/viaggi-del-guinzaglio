@@ -1,0 +1,72 @@
+<% provide :title %>
+
+<audio autoplay>
+  <source src="assets/Dogs.mp3" type="audio/mp3">
+</audio>
+
+  <div id="img_home">
+    <img src="assets/Viaggi del Guizaglio_Logo.png" alt="Logo" />
+  </div>
+
+
+<div id="colonnadx">
+
+  <h2>
+    Sei un po' stanco? Vai a casa...
+  </h2>
+
+  <canvas id="canvas_img" width="500" height="400">Non supportato</canvas>
+
+    <img src="assets/freccia_indietro.png" width="80" onclick="StancoImg()"/>
+    <img src="assets/freccia_avanti.png" width="80" onclick="AvventuraImg()"/>
+
+  </div>
+
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas_img');
+      var ctx = canvas.getContext('2d');
+
+      var img= new Image();
+      img.src = "assets/Maddie.png";
+      img.onload = function(){
+          ctx.drawImage(img,0,0);
+      }
+
+      function StancoImg(){
+          var img= new Image();
+          img.src = "assets/Maddie.png";
+          ctx.drawImage(img,0,0);
+
+      }
+
+      function AvventuraImg(){
+          var img= new Image();
+          img.src = "assets/Avventura.jpeg";
+          ctx.drawImage(img,0,0);
+
+      }
+
+</script>
+
+<div id="colonnasx">
+
+  <h2>
+    Registrati o effettua il login per iniziare.
+  </h2>
+
+    <div class="login">
+      <%= render 'shared/login' %>
+    </div>
+    <br/>
+    <br/>
+
+    <p id="seinuovo">Sei nuovo?</p>
+
+    <div class="registrati">
+      <%= link_to "Registrati!", signup_path, class: "brn btn-large btn-primary" %>
+    </div>
+</div>
+
+
+
+

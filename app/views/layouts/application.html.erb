@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+
+<body>
+        <% # the flash message; it supports different type of communications %>
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
+        <%= yield %>
+
+<% # show debug info if development is the actve Rails env %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<% provide :title, 'Home page' %>
+<%= render 'layouts/header' %>
+
+
+<div class="img_logo">
+  <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+</div>
+
+<a href="<%= user_path(current_user) %>">
+  <%= gravatar_for current_user, size: 52 %>
+</a>
+
+<div class="ricerca">
+  <%= render 'users/search_form' %>
+</div>
+
+
+<div class="concorsi">
+  <h3 class="sub_itinerari"> I nostri concorsi </h3>
+</div>
+
+
+<div class="Itinerari">
+  <ul class="menu">
+    <li class="<%= 'active' if params[:controller] == 'homepage' %>"><a href="/users/homepage"> Ultimi itinerari </a> </li>
+    <li class="<%= 'active' if params[:controller] == 'homepage2' %>"><a href="/users/homepage2">Itinerari following</a></li>
+    <li class="<%= 'active' if params[:controller] == 'homepage3' %>"><a href="/users/homepage3">Itinerari più votati</a></li>
+    <br/>
+    <br/>
+
+  </ul>
+  <h3 class="sub_itinerari">Gli itinerari più votati</h3>
+</div>

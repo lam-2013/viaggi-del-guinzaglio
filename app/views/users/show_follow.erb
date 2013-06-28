@@ -1,0 +1,33 @@
+<% provide(:title, @title) %>
+<%= render 'layouts/header' %>
+
+
+
+<div class="img_logo">
+  <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+</div>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to 'View my profile', @user %></span>
+      <span><b>Ultimi itinerari pubblicati</b> <%= @user.itinerarios.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+        <%= will_paginate %>
+
+        <ul class="users">
+          <%= render @users %>
+        </ul>
+        <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

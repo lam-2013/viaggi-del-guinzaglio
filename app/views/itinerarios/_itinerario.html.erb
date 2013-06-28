@@ -1,0 +1,9 @@
+<li>
+  <span class="content"><h2>Caricato</h2></span>
+  <span class="timestamp">
+    Itinerario postato <%= time_ago_in_words(itinerario.created_at) %> ago
+  </span>
+  <% if current_user?(itinerario.user) %>
+      | <%= link_to 'delete', itinerario, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</li>

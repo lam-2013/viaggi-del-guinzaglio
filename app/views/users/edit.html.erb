@@ -1,0 +1,31 @@
+<% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
+<% provide :title, 'Modifica profilo' %>
+
+<div class="img_logo">
+<%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+</div>
+
+<h1>Aggiorna il tuo profilo</h1>
+
+<div class="dati_form">
+
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object  %>
+
+
+        <%= f.label :name, 'Nome:'%>
+        <%= f.text_field :name %>
+
+        <%= f.label :email, 'E-mail:'%>
+        <%= f.text_field :email %>
+
+        <%= f.label :password, 'Password:' %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation, 'Conferma password:' %>
+        <%= f.password_field :password_confirmation %>
+
+        <%= f.submit 'Salva', class: 'btn btn-large btn-primary' %>
+    <% end %>
+</div>
+

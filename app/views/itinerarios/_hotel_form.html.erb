@@ -1,0 +1,27 @@
+
+<h3> Inserisci un hotel:</h3>
+
+
+
+<div class="row">
+  <div class="field span7">
+
+    <%= form_for @hotel do |f|%>
+        <%= render 'shared/error_messages', object: f.object%>
+
+        <%= f.label :nome_hotel, 'In quale hotel hai soggiornato?'%>
+        <%= f.text_field :nome_hotel %><br />
+
+        <%= f.label :indirizzo_hotel, 'Dove si trova?'%>
+        <%= f.text_field :indirizzo_hotel %><br />
+
+        <%= f.label :spesa_hotel, 'Quanto costa?'%>
+        <%= f.text_field :spesa_hotel %><br />
+
+        <%= f.label :commenti_hotel, 'Aggiungi i tuoi commenti '%>
+        <%= f.text_area :commenti_hotel %><br />
+
+        <%= f.submit 'Avanti!' %>
+    <% end %>
+  </div>
+</div>

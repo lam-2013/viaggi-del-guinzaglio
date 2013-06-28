@@ -1,0 +1,24 @@
+<% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
+<% provide :title, 'Risultati ricerca' %>
+<%= render 'layouts/header' %>
+
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+  </div>
+</a>
+
+
+
+<a href="<%= user_path(current_user) %>">
+  <%= gravatar_for current_user, size: 52 %>
+</a>
+
+<h2> Risultati della ricerca: </h2>
+
+    <% @users = User.search(params[:search])  %>
+
+    <%= render @users %>
+
+
