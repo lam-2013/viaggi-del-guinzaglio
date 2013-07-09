@@ -1,71 +1,40 @@
 <% provide :title %>
 
-<audio autoplay>
+<audio autoplay xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <source src="assets/Dogs.mp3" type="audio/mp3">
 </audio>
 
-  <div id="img_home">
-    <img src="assets/Viaggi del Guizaglio_Logo.png" alt="Logo" />
-  </div>
+<div id="colonnasx">
 
+  <div id="img_home">
+    <img src="assets/Viaggi del Guizaglio_Logo7.png" alt="Logo" />
+  </div>
+    <div class="login">
+      <%= render 'shared/login' %>
+
+
+      <p id="seinuovo">Accedi con:
+      <%= link_to image_tag("Twitter_Logo.gif", width: 43), '/auth/twitter' %>
+      <%= link_to image_tag("facebook_icon.png", width: 45), '/auth/facebook' %>
+      </p>
+    </div>
+
+
+       <div class="registrati">
+          Sei nuovo?
+            <%= link_to "Registrati adesso", signup_path %>
+    </div>
+</div>
 
 <div id="colonnadx">
 
-  <h2>
-    Sei un po' stanco? Vai a casa...
-  </h2>
+  <video id="movie" width="450" height="600"  autoplay loop>
+    <source src="/assets/Maddie_Video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2, H264"' />
+    Your browser does not support the video tag.
+  </video>
 
-  <canvas id="canvas_img" width="500" height="400">Non supportato</canvas>
-
-    <img src="assets/freccia_indietro.png" width="80" onclick="StancoImg()"/>
-    <img src="assets/freccia_avanti.png" width="80" onclick="AvventuraImg()"/>
-
-  </div>
-
-    <script type="text/javascript">
-      var canvas = document.getElementById('canvas_img');
-      var ctx = canvas.getContext('2d');
-
-      var img= new Image();
-      img.src = "assets/Maddie.png";
-      img.onload = function(){
-          ctx.drawImage(img,0,0);
-      }
-
-      function StancoImg(){
-          var img= new Image();
-          img.src = "assets/Maddie.png";
-          ctx.drawImage(img,0,0);
-
-      }
-
-      function AvventuraImg(){
-          var img= new Image();
-          img.src = "assets/Avventura.jpeg";
-          ctx.drawImage(img,0,0);
-
-      }
-
-</script>
-
-<div id="colonnasx">
-
-  <h2>
-    Registrati o effettua il login per iniziare.
-  </h2>
-
-    <div class="login">
-      <%= render 'shared/login' %>
-    </div>
-    <br/>
-    <br/>
-
-    <p id="seinuovo">Sei nuovo?</p>
-
-    <div class="registrati">
-      <%= link_to "Registrati!", signup_path, class: "brn btn-large btn-primary" %>
-    </div>
 </div>
+
 
 
 

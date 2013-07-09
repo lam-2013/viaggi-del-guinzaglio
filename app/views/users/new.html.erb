@@ -1,27 +1,28 @@
 <% provide :title, 'Registrazione' %>
 
-<div class="img_logo">
-  <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+<div class="img_logo" xmlns="http://www.w3.org/1999/html">
+  <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
 </div>
 
-<h2>Inserisci i tuoi dati</h2>
-
 <div class="dati_form">
+
+  <h2>Inserisci i tuoi dati:</h2>
+
 <%= form_for @user, :url => {:action => "create"} do |f|%>
     <%= render 'shared/error_messages', object: f.object%>
 
     <%= f.label :name, 'Nome:'%>
-    <%= f.text_field :name %><br />
+    <%= f.text_field :name %>
 
     <%= f.label :email, 'E-mail:'%>
-    <%= f.text_field :email %><br />
+    <%= f.text_field :email %>
 
     <%= f.label :password, 'Password:'%>
-    <%= f.password_field :password %><br />
+    <%= f.password_field :password %>
 
     <%= f.label :password_confirmation, 'Conferma password:' %>
-    <%= f.password_field :password_confirmation %><br /><br />
+    <%= f.password_field :password_confirmation %><br /><br/>
 
-    <%= f.submit 'Crea il mio account', class: "brn btn-large btn-primary" %>
+    <%= f.submit 'Crea il mio account', :type => :image, :src => "/assets/Ok.png" %>
 <% end %>
 </div>

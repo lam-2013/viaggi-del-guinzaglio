@@ -6,11 +6,15 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'annotate'
-gem 'bcrypt-ruby'
 gem 'faker'
-gem 'tabs_on_rails'
 
+gem 'thin'
+
+group :development do
+  gem 'annotate', '2.5.0'
+  #gem for Google Development Rails Tool
+  gem 'meta_request'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -30,8 +34,13 @@ gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
+#gemme OAuth2
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

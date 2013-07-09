@@ -2,7 +2,9 @@
    # in the home @user is nil and needs to be filled %>
 
 <% @user = User.find(params[:id]) %>
-<div class="stats">
+
+
+<h3>
   <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
       <%= @user.followed_users.count %>
@@ -15,4 +17,4 @@
     </strong>
     followers
   </a>
-</div>
+</h3>

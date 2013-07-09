@@ -2,19 +2,21 @@ SWorDNostro::Application.routes.draw do
 
   root :to => 'pages#home'
 
-  # route for the homepage
-  #match '/home', to: 'pages#home'
-
 
   # named routes for static pages, signup, login and logout
   match '/about', to: 'pages#about'
   match '/contact', to: 'pages#contact'
   match '/faq', to: 'pages#faq'
   match '/signup', to: 'users#new'
-  #match '/signin', to: 'sessions#new'
+  match '/signin', to: 'sessions#new'
   # signout should be performed by using the HTTP DELETE request
 
   match '/signout', to: 'sessions#destroy', via: :delete
+
+
+  #per OAuth2
+  match '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/failure', to: 'users#failure'
 
   # routes for the Users controller (default plus following and followers)
   resources :users do
@@ -23,26 +25,44 @@ SWorDNostro::Application.routes.draw do
     end
 
     collection do
-      get :search, :homepage, :homepage2, :homepage3
+      get :search, :homepage
     end
   end
 
-
-
-
-  # default routes for the Sessions controller (only new, create and destroy)
+ # default routes for the Sessions controller (only new, create and destroy)
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :itinerarios, only: [:create, :destroy, :vote]
+  resources :itinerarios do
+    member do
+      post :new
+    end
 
+    collection do
+      get :search2
+      end
+  end
+
+ match 'users/itinerarios/all', to: 'itinerarios#all'
+ match 'users/itinerarios/allfollowing', to: 'itinerarios#allfollowing'
+ match 'users/itinerarios/classifica', to: 'itinerarios#classifica'
+
+
+
+  resources :hotels
+
+
+  resources :ristorantes
+
+
+  resources :luogos
 
 
   # default routes for the Relationship controller (only create and destroy) - needed to build follow/unfollow relations
   resources :relationships, only: [:create, :destroy]
 
+  resources :votatos
 
-  match '/users/:id/edit', to: 'users#edit'
-  match '/users/:id', to: 'users#show'
+
 
 
   # The priority is based upon order of creation:

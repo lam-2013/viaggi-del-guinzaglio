@@ -1,13 +1,21 @@
 
 <% provide :title, 'Chi siamo'   %>
+<%= render 'layouts/header' %>
 
 <a href=<%= homepage_users_path %>>
   <div class="img_logo">
-    <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
   </div>
 </a>
 
-<h1>About us</h1>
-<p>SWorD (Social Web of real Domotics) is a prototype social network where users, homes,
-  providers, devices and appliances can interact in a "smart" way, by talking each other and thus lowering the
-  technical knowledge to use home automation and domotics systems.</p>
+
+<div class="chisiamo">
+<h2>Chi Siamo</h2>
+<p><h3>I viaggi del guinzaglio non è un sito, ma social network innovativo e intrigante. Non è un mero passatempo, ma un vero e proprio stile di vita. Qui si parla di cani e di viaggi, possibilmente nello stesso momento. È il network dedicato a tutti i turisti che non vogliono rinunciare alla compagnia del proprio cane di fronte a un paesaggio mozzafiato, né mentre assaporano un’insolita cucina locale. Su I viaggi del guinzaglio puoi trovare itinerari consigliati di chi ha già visitato la tua meta, dire la tua sui viaggi più interessanti o semplicemente godere di qualche scatto. Ogni giorno è un giorno buono per partire… la compagnia la scegli tu, l’ispirazione te la diamo noi!</h3></p>
+  <br/>
+  <br/>
+  <%= image_tag("maddie-zaino.jpg") %>
+
+
+</div>
+

@@ -1,13 +1,15 @@
 <% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
-<% provide :title, 'Modifica profilo' %>
+<% provide :title, 'Modifica Profilo' %>
 
-<div class="img_logo">
-<%= image_tag("Viaggi del Guizaglio_Logo.png") %>
-</div>
-
-<h1>Aggiorna il tuo profilo</h1>
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
 
 <div class="dati_form">
+
+  <h2>Aggiorna il tuo profilo</h2>
 
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object  %>
@@ -23,9 +25,9 @@
         <%= f.password_field :password %>
 
         <%= f.label :password_confirmation, 'Conferma password:' %>
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation %>       <br/><br/>
 
-        <%= f.submit 'Salva', class: 'btn btn-large btn-primary' %>
+        <%= f.submit 'Salva', :type => :image, :src => "/assets/salva.png" %>
     <% end %>
 </div>
 

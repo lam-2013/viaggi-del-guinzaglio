@@ -1,5 +1,6 @@
 <div class="login_form">
-    <%= form_for(:session, url: sessions_path) do |f| %>
+  <h2>l       o       g       i       n</h2>
+  <%= form_for(:session, url: sessions_path) do |f| %>
 
         <%= f.label :email %>
         <%= f.text_field :email %>
@@ -7,6 +8,7 @@
         <%= f.label :password %>
         <%= f.password_field :password %>
         <br/>
-        <%= f.submit 'Ok', class: 'btn btn-large btn-primary' %>
+        <br/>
+        <%= f.submit 'Ok', :type => :image, :src => "/assets/Ok.png" %>
     <% end %>
 </div>

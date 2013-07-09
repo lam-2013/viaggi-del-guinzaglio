@@ -1,4 +1,6 @@
 <% # linked to the destroy action in the Relationship controller %>
-<%= form_for(current_user.relationships.find_by_followed_id(@user), html: { method: :delete }, remote: true ) do |f| %>
-    <%= f.submit 'Unfollow', class: 'btn btn-large' %>
+<%= form_for(current_user.relationships.find_by_followed_id(@user), html: { method: :delete, :onsubmit => "unfollow()"}, remote: true ) do |f| %>
+
+    <%= f.submit "Unfollow", :type => :image, :src => "/assets/zampa_unfollow.png" %>
+
 <% end %>

@@ -8,7 +8,4 @@ class Relationship < ActiveRecord::Base
   validates :followed_id, presence: true
   validates :follower_id, presence: true
 
-
-
-
 end

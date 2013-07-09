@@ -1,73 +1,92 @@
 <% provide :title, 'Profilo' %>
 <%= render 'layouts/header' %>
 
+<div id="tot_colonnasx_home" xmlns="http://www.w3.org/1999/html">
 
-
-  <section>
     <a href=<%= homepage_users_path %>>
       <div class="img_logo">
-        <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+        <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
       </div>
     </a>
 
+  <div class="utente">
+
+    <%= gravatar_for @user, size: 150 %>
+
     <h1><%= @user.name %></h1>
-
-    <%= gravatar_for current_user, size: 60 %>
-
     <h3> Iscritto da: <%= time_ago_in_words(@user.created_at) %> </h3>
 
-
-
+    <br/>
     <br/>
 
-    <h1> <%= render 'follow_form' if signed_in? %> </h1>
+    <div id="stats_div">
+      <%= render 'shared/stats' %>
+      </div>
 
-    <%= render 'shared/stats' %>
+    <br/>
+    <br/>
 
-    <h3> Inserisci un nuovo itinerario:</h3>
+  </div>
+
+  <% if (current_user.id==User.find(params[:id]).id) %>
+ <div id="modifica_div">
+   <h1><%= link_to "Modifica il tuo profilo", :action => "edit" %></h1>
+ </div>
+   <% end %>
+</div>
+
+<div id="tot_colonnadx_home">
+
+  <div class="colonnadx_show">
+    <%= render 'follow_form' if signed_in? %>
 
 
-        <div class="row">
-          <div class="field span7">
+    <% if (current_user.id==User.find(params[:id]).id) %>
 
-            <%= form_for @itinerario do |f|%>
-                <%= render 'shared/error_messages', object: f.object%>
-
-                <%= f.label :nome_itinerario, 'Dai un nome al tuo itinerario!'%>
-                <%= f.text_field :nome_itinerario %><br />
-
-                <%= f.label :citta, 'Quale citta hai visitato?'%>
-                <%= f.text_field :citta %><br />
-
-                <%= f.label :num_giorni, 'Quanti giorni è durato il tuo soggiorno? '%>
-                <%= f.text_field :num_giorni %><br />
-
-                <%= f.label :voto, 'Vota!'%>
-                <%= f.text_field :voto %><br />
-
-                <%= f.submit 'Avanti!', class: "brn btn-large btn-primary" %>
-            <% end %>
-          </div>
+        <div class="ricercautente">
+            <h3>Cerca qui i tuoi amici:</h3>
+            <%= render 'users/search_form' %>
         </div>
 
+        <div class="utente_follow">
+
+
+        <audio id="suono_voto">
+          <source src="/assets/dog_vote.wav" type="audio/wav">
+        </audio>
+
+        <script type="text/javascript">
+
+          function vote_sound(){
+          var sound=document.getElementById("suono_voto");
+                sound.play();
+          }
+
+        </script>
+
+        <a onmouseover="vote_sound();" href=<%= new_itinerario_path %>><img src="/assets/Nuovoitinerario.png" width="120"/></a>
+
+      </div>
+  <% end %>
+    <h2>Itinerari <h3>(<%= @user.itinerarios.count %>)</h3></h2>
+
     <% if @user.itinerarios.any? %>
-        <h3>Itinerari (<%= @user.itinerarios.count %>)</h3>
-        <ol class="posts">
-          <%= render @itinerarios %>
-        </ol>
-        <%= will_paginate @itinerarios %>
-    <% end %>
+      <ol class="itinerari">
+        <%= render @itinerarios %>
+      </ol>
+      <br/>
+      <br/>
+      <%= will_paginate @itinerarios %>
 
-    <% if (current_user.id!=User.find(params[:id]).id) %>
+  <% end %>
+  </div>
 
-            <%= button_to "Torna al tuo profilo", current_user, class: "brn btn-large btn-primary" %>
-        <% else %>
-            <%= button_to "Modifica il tuo profilo", class: "brn btn-large btn-primary", :action => "edit" %>
-    <% end %>
+          </div>
 
 
-    <%= link_to "Logout", signout_path, method: :delete, class: "brn btn-large btn-primary" %>
 
-  </section>
+
+
+
 
 

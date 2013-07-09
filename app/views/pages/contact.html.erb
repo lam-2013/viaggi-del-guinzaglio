@@ -1,11 +1,95 @@
-
 <% provide :title, 'Contattaci' %>
+<%= render 'layouts/header' %>
+
 
 <a href=<%= homepage_users_path %>>
   <div class="img_logo">
-    <%= image_tag("Viaggi del Guizaglio_Logo.png") %>
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
   </div>
 </a>
 
-<h1>Contact</h1>
-<p>Giorgia Salis - Massimiliano Manzo - Gianluca Giraudo</p>
+<div id="tot_colonnasx_home">
+
+<div class="Gian">
+  <canvas id="canvas_imgGigio" width="500" height="400">Non supportato</canvas>
+
+  <script type="text/javascript">
+      var canvas = document.getElementById('canvas_imgGigio');
+      var ctx = canvas.getContext('2d');
+
+      var img= new Image();
+      img.src = "assets/Gian.jpg";
+      img.onload = function(){
+
+       ctx.drawImage(img,0,0);
+      }
+  </script>
+  <br/>
+  <br/>
+  <br/>
+</div>
+
+<div class="Gian">
+  <canvas id="canvas_imgGio" width="500" height="400">Non supportato</canvas>
+
+  <script type="text/javascript">
+      var canvas2 = document.getElementById('canvas_imgGio');
+      var ctx2 = canvas2.getContext('2d');
+
+      var img2= new Image();
+      img2.src = "assets/Gio.jpg";
+      img2.onload = function(){
+
+      ctx2.drawImage(img2,0,0);
+      }
+  </script>
+  <br/>
+  <br/>
+  <br/>
+</div>
+
+<div class="Gian">
+  <canvas id="canvas_imgMass" width="500" height="400">Non supportato</canvas>
+
+  <script type="text/javascript">
+      var canvas3 = document.getElementById('canvas_imgMass');
+      var ctx3 = canvas3.getContext('2d');
+
+      var img3= new Image();
+      img3.src = "assets/Mass.jpg";
+      img3.onload = function(){
+
+          ctx3.drawImage(img3,0,0);
+      }
+  </script>
+  <br/>
+  <br/>
+  <br/>
+</div>
+
+</div>
+
+<div id="tot_colonnadx_home">
+  <div id="contatti_gian">
+    <h2>Gianluca giraudo</h2>
+    <h3>Copy writer</h3>
+    <h3>gian.giraudo@gmail.com</h3>
+  </div>
+
+  <div id="contatti_gio">
+    <h2>Giorgia Salis</h2>
+    <h3>Art director</h3>
+    <h3>giorgia.salis@gmail.com</h3>
+  </div>
+
+  <div id="contatti_max">
+    <h2>Massimiliano Manzo</h2>
+    <h3>Responsabile dei concorsi</h3>
+    <h3>massimiliano.manzo@yahoo.it</h3>
+  </div>
+
+</div>
+
+
+
+

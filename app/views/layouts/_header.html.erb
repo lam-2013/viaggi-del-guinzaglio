@@ -2,13 +2,25 @@
   <div class="navbar-inner">
     <div class="header">
       <nav>
+        <ul class="nav pull-left">
+          <li><i class="icon-search icon-white" id="iconcina_search"></i></li>
+          <li id="cerca"><%= render 'itinerarios/search_form' %></li>
+          </ul>
+
         <ul class="nav pull-right">
           <% #link_to is the Rails helper to create links (it generates <a...> tags) %>
+          <li><i class="icon-home icon-white" id="iconcina"></i></li>
           <li><%=link_to "Home",    homepage_users_path %></li>
+          <li><i class="icon-user icon-white" id="iconcina"></i></li>
+          <li><%= link_to "Profilo", current_user %></li>
+          <li><i class="icon-globe icon-white" id="iconcina"></i></li>
           <li><%=link_to "Chi siamo",    about_path %></li>
+          <li><i class="icon-envelope icon-white" id="iconcina"></i></li>
           <li><%=link_to "Contattaci",    contact_path %></li>
+          <li><i class="icon-comment icon-white" id="iconcina"></i></li>
           <li><%=link_to "Faq",  faq_path %></li>
           <% if signed_in? %>
+              <li><i class="icon-off icon-white" id="iconcina"></i></li>
               <li><%= link_to "Esci", signout_path, method: "delete" %></li>
           <% else %>
               <li><%=link_to "Sign in", signin_path %></li>

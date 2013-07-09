@@ -4,18 +4,26 @@ class ItinerariosController < ApplicationController
   # check if the user is allowed to delete a post
   before_filter :correct_user, only: :destroy
 
+  def new
+    @itinerario = Itinerario.new
+  end
+
   def create
     # build a new post from the information contained in the "new post" form
     @itinerario = current_user.itinerarios.build(params[:itinerario])
 
     if @itinerario.save
-      flash[:success] = 'Itinerario created!'
-      render current_user
-
+      #flash[:success] = 'Itinerario created!'
+      redirect_to new_hotel_path(:itinerario_id => @itinerario.id)
     else
-      redirect_to 'pages/home'
+      render 'new'
     end
+  end
 
+  def show
+    @itinerario = Itinerario.find(params[:id])
+    @itinerario_id = @itinerario.id
+    @votatos=Votato.all
   end
 
 
@@ -24,17 +32,10 @@ class ItinerariosController < ApplicationController
     redirect_to current_user
   end
 
-  #def show_hotel_form
-
-  #end
-
-  private
-
   def correct_user
-    # does the user have a post with the given id?
-    @itinerario = current_user.itinerarios.find_by_id(params[:id])
-    # if not, redirect to the home page
-    redirect_to 'pages/home' if @itinerario.nil?
+    @itinerario=current_user.itinerarios.find_by_id(params[:id])
+    redirect_to homepage_users_path if @itinerario.nil?
   end
+
 
 end

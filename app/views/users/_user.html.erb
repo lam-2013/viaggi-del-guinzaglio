@@ -1,7 +1,12 @@
 <li>
+  <h3>
+    <a href="<%= user_path(user) %>">
+    <%= gravatar_for user, size: 60 %>
+  </a>
+
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
       <% # since browsers cannot send DELETE request, Rails fakes them with javascript... %>
       | <%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+  <% end %>  </h3>
 </li>

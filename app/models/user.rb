@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :twitter_uid, :facebook_uid
 
   has_secure_password
 
-  has_many :itinerarios #, dependent: destroy
+  has_many :itinerarios, dependent: :destroy
 
-  has_many :relationships, foreign_key: "follower_id" #, dependent: destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
   # each user can have many followed users, through the relationships table
   # since followed_users does not exist, we need to give to Rails the right column name in the relationships column (with source: "followed_id")
@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   # each user can have many followers, through reverse relationships
   has_many :followers, through: :reverse_relationships
 
+  has_many :votatos
+
   # put the email in downcase before saving the user
   before_save { |user| user.email = email.downcase }
   # call the create_remember_token private method before saving the user
@@ -27,6 +29,25 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true, :format => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   validates :password, :presence => true, :length => { :minimum => 6}
   validates :password_confirmation, :presence => true
+
+  # create user from oauth data
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      if auth[:provider] == 'twitter'
+        user.twitter_uid = auth[:uid]
+        user.name = auth[:info][:name]
+  # compose a fake email, since twitter does not provide this information
+        user.email = "#{auth[:info][:nickname]}@twitter.com"
+      elsif auth[:provider] == 'facebook'
+        user.facebook_uid = auth[:credentials][:token]
+        user.name = auth[:info][:name]
+        user.email = auth[:info][:email]
+      end
+  # generate a random password
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+    end
+  end
 
 
   # is the current user following the given user?
@@ -44,6 +65,15 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  def vote?(itinerario)
+    votatos.find_by_itinerario_id(itinerario.id)
+  end
+
+
+  def vote!(itinerario)
+    votatos.create!(itinerario_id: itinerario.id)
+  end
+
   #metodo privato
   private
   def create_remember_token
@@ -58,6 +88,8 @@ class User < ActiveRecord::Base
       scoped
     end
   end
+
+
 
 
 
