@@ -1,0 +1,28 @@
+<% provide :title, 'Dettagli Hotel' %>
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+<div id="tot_colonnasx_home">
+    <div class="info_struttura">
+      <h2><%= @hotel.nome_hotel %>  </h2>
+      </br>
+        <h3>
+            Indirizzo: <%= @hotel.indirizzo_hotel %>
+            <br/>
+            <br/>
+            Costo/notte: <%= @hotel.spesa_hotel %>
+            <br/>
+            <br/>
+            Commenti degli utenti: <%= @hotel.commenti_hotel %>
+        </h3>
+    </div>
+</div>
+
+    <div class="img_struttura">
+      <img src="/assets/hotel.JPG" width="600"/>
+    </div>
