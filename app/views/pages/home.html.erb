@@ -14,7 +14,7 @@
   <div class="login">
       <%= render 'shared/login' %>
 
-      <p id="seinuovo">Accedi con:
+      <p id="seinuovo"><h3>Accedi con:</h3>
       <%= link_to image_tag("Twitter_Logo.gif", width: 43), '/auth/twitter' %>
       <%= link_to image_tag("facebook_icon.png", width: 45), '/auth/facebook' %>
       </p>
@@ -22,8 +22,8 @@
 
 
   <div class="registrati">
-          Sei nuovo?
-          <%= link_to "Registrati adesso", signup_path %>
+          <h3>Sei nuovo?
+          <%= link_to "Registrati adesso", signup_path %></h3>
   </div>
 </div>
 

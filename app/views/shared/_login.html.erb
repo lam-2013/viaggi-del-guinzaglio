@@ -3,14 +3,13 @@
 <div class="login_form">
   <h2>login</h2>
   <%= form_for(:session, url: sessions_path) do |f| %>
-
+        <h3>
         <%= f.label :email %>
         <%= f.text_field :email %>
 
         <%= f.label :password %>
-        <%= f.password_field :password %>
-        <br/>
-        <br/>
+        <%= f.password_field :password %></h3>
+
         <%= f.submit 'Ok', :type => :image, :src => "/assets/Ok.png" %>
     <% end %>
 </div>

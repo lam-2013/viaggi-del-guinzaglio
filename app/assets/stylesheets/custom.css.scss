@@ -273,7 +273,6 @@ input {
 }
 
 #colonnasx{
-  margin-top: 0px;
   margin-left: 40px;
   width: 40%;
   float:left;
@@ -288,7 +287,7 @@ input {
     background-color: #ffffff;
     font-size: 10px;
     text-align: center;
-    padding-bottom: 10px;
+    //padding-bottom: 10px;
     border-bottom: 2px solid lightgray;
 
   }
@@ -351,7 +350,7 @@ input {
 }
 
 #colonnasx_home{
-  padding: 10px;
+  //padding: 10px;
   border: 1px solid lightgray;
   background-color: lightgray;
   opacity:0.8;
