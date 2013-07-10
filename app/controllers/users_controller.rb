@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @user=User.new(params[:user])
     if @user.save
       #redirect_to '/home'
-      flash[:success] = "Benvenuto!"
+      #flash[:success] = "Benvenuto!"
       sign_in @user
       redirect_to homepage_users_path
     else
