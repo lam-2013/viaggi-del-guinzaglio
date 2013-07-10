@@ -72,14 +72,15 @@
 
                 <% if current_user.id==@itinerario.user_id %>
                 <h3> <%=  link_to 'Modifica hotel', edit_hotel_path(@itinerario_id) %> </h3>
-                <% end %>
+                <% end %></h3>
       <% else %>
           <br/>
 
           <!-- Se mancano hotel, ristorante e luogo posso completare itinerario -->
           <% if current_user.id==@itinerario.user_id %>
-                 <h3><%=  link_to 'Completa itinerario', new_hotel_path(:itinerario_id => @itinerario_id) %> </h3>
-          <% end %></h3>
+
+              <h2><%=  link_to 'Completa itinerario', new_hotel_path(:itinerario_id => @itinerario_id) %></h2>
+          <% end %>
     </div>
       <% end %>
 
