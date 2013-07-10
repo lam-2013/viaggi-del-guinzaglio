@@ -18,14 +18,16 @@
 
 
   <div class="span8">
-    <h3><%= @title %></h3>
     <% if @users.any? %>
-        <%= will_paginate %>
+        <h3><%= @title %></h3>
 
         <ul class="users">
           <%= render @users %>
         </ul>
         <%= will_paginate @users %>
+    <%else%>
+        <h2>Oh no! La lista è vuota!</h2>
+
     <% end %>
   </div>
 </div>
