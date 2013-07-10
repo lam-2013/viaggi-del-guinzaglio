@@ -46,7 +46,7 @@ def make_itinerarios
 
     users.each { |user| user.itinerarios.create!( nome_itinerario: Faker::Name.name.titleize,
                                                   citta: Faker::Address.city,
-                                                  voto: Random.new.rand(0...40),
+                                                  voto: 0,
                                                   num_giorni: Random.new.rand(2...20))
     }
 

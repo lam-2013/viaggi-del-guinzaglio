@@ -1,3 +1,6 @@
+<!-- Bottone quando itinerario non è stato ancora votato -->
+
+<!-- Dopo submit, invia al controllore gli hidden field che andranno a aggiornare Votatos: id_utente votante - id_itinerario votato -->
 <%= form_for(current_user.votatos.build(user_id: current_user.id, itinerario_id: @itinerario.id), remote: true) do|f| %>
     <%= f.hidden_field :itinerario_id, :value => @itinerario.id, :name => :itinerario_id %>
     <%= f.hidden_field :user_id, :value => current_user.id, :name => :user_id %>

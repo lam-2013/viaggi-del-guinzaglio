@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-# oauth login
+    # gestisce oauth login
     auth = request.env['omniauth.auth']
     if auth
       if auth[:provider] == 'twitter'
@@ -14,27 +14,27 @@ class SessionsController < ApplicationController
         email = auth[:info][:email]
       end
       if email
-# is user already signed up?
+        # controlla se l'utente è registrato
         user = User.find_by_email(email.downcase)
-# otherwise, create a new user
+        # se no, crea nuovo utente
         user = User.create_with_omniauth(auth) unless user
         sign_in user
+        # indirizza alla homepage
         redirect_to homepage_users_path
       end
-# normal login procedure
+    # login normale
     else
-# get the user email from the sign in form
+      # controlla email
       user = User.find_by_email(params[:session][:email].downcase)
-# check if the retrieved user is valid
+      # controlla password
       if user && user.authenticate(params[:session][:password])
-# handle successful login
-        sign_in user # sign in method implemented in the SessionsHelper class
-        redirect_to homepage_users_path # redirect to user profile page (same of redirect_to user_path(user))
+        # login effettuato
+        sign_in user #  SessionsHelper class
+        redirect_to homepage_users_path
       else
-# handle wrong login information, by using flash.now that is specifically design for showing the flash on rendered page
+        # errori nella compilazione del form
         flash.now[:error] = 'Invalid email/password combination'
-# go back to the sign in page
-# render 'new'
+        # si torna alla pagina di login
         redirect_to signin_path
       end
     end

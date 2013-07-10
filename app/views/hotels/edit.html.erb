@@ -1,6 +1,8 @@
 <% provide :title, 'Modifica Hotel' %>
 
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
+
 
 <a href=<%= homepage_users_path %>>
   <div class="img_logo">
@@ -8,9 +10,11 @@
   </div>
 </a>
 
+
 <div class="dati_form">
   <h2>Modifica le informazioni sull'hotel <%= @hotel.nome_hotel %></h2>
 
+  <!-- form per modifica dati hotel (precompilato)-->
   <%= form_for(@hotel) do |f|%>
       <%= render 'shared/error_messages', object: f.object%>
 
@@ -28,7 +32,7 @@
 
       <%= f.hidden_field :itinerario_id, value: @hotel.itinerario_id %>
 
-      <%= f.submit 'Salva', class: "brn btn-large btn-primary" %>
+      <%= f.submit 'Salva', :type => :image, :src => "/assets/salva.png" %>
   <% end %>
 
 </div>

@@ -1,7 +1,8 @@
 <% provide :title, 'Profilo' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
-<div id="tot_colonnasx_home" xmlns="http://www.w3.org/1999/html">
+<div id="tot_colonnasx_home">
 
     <a href=<%= homepage_users_path %>>
       <div class="img_logo">
@@ -9,6 +10,7 @@
       </div>
     </a>
 
+  <!-- Info utente -->
   <div class="utente">
 
     <%= gravatar_for @user, size: 150 %>
@@ -28,19 +30,21 @@
 
   </div>
 
+  <!-- se profilo è del current può modificarlo -->
   <% if (current_user.id==User.find(params[:id]).id) %>
- <div id="modifica_div">
-   <h1><%= link_to "Modifica il tuo profilo", :action => "edit" %></h1>
- </div>
+      <div id="modifica_div">
+          <h1><%= link_to "Modifica il tuo profilo", :action => "edit" %></h1>
+      </div>
    <% end %>
 </div>
 
 <div id="tot_colonnadx_home">
 
   <div class="colonnadx_show">
+    <!-- mostra se altro utente è seguito o meno -->
     <%= render 'follow_form' if signed_in? %>
 
-
+    <!-- Se utente è current può effettuare ricerca per utente e creare nuovo itinerario -->
     <% if (current_user.id==User.find(params[:id]).id) %>
 
         <div class="ricercautente">
@@ -50,24 +54,25 @@
 
         <div class="utente_follow">
 
+            <audio id="suono_voto">
+              <source src="/assets/dog_vote.wav" type="audio/wav">
+            </audio>
 
-        <audio id="suono_voto">
-          <source src="/assets/dog_vote.wav" type="audio/wav">
-        </audio>
+            <script type="text/javascript">
 
-        <script type="text/javascript">
+              function vote_sound(){
+              var sound=document.getElementById("suono_voto");
+                    sound.play();
+              }
 
-          function vote_sound(){
-          var sound=document.getElementById("suono_voto");
-                sound.play();
-          }
+            </script>
 
-        </script>
-
-        <a onmouseover="vote_sound();" href=<%= new_itinerario_path %>><img src="/assets/Nuovoitinerario.png" width="120"/></a>
-
-      </div>
+            <!-- Bottone "Nuovo itinerario" con tag audio -->
+            <a onmouseover="vote_sound();" href=<%= new_itinerario_path %>><img src="/assets/Nuovoitinerario.png" width="120"/></a>
+        </div>
   <% end %>
+
+    <!-- Mostra itinerari dell'utente -->
     <h2>Itinerari <h3>(<%= @user.itinerarios.count %>)</h3></h2>
 
     <% if @user.itinerarios.any? %>
@@ -81,7 +86,7 @@
   <% end %>
   </div>
 
-          </div>
+</div>
 
 
 

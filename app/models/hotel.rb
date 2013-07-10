@@ -1,6 +1,7 @@
 class Hotel < ActiveRecord::Base
   attr_accessible :commenti_hotel, :indirizzo_hotel, :nome_hotel, :spesa_hotel, :itinerario_id
 
+  # appartiene a itinerario
   belongs_to :itinerario
 
   validates :indirizzo_hotel, :presence => true, :length => { :maximum => 30 }

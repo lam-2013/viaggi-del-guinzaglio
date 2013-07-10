@@ -6,7 +6,7 @@
 
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
-      <% # since browsers cannot send DELETE request, Rails fakes them with javascript... %>
+      <!-- Se utente è admin può cancellare altri utenti -->
       | <%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>  </h3>
 </li>

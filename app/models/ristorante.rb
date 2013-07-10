@@ -1,6 +1,7 @@
 class Ristorante < ActiveRecord::Base
   attr_accessible :commenti_ristorante, :indirizzo_ristorante, :nome_ristorante, :spesa_ristorante, :itinerario_id
 
+  # appartiene a itinerario
   belongs_to :itinerario
 
   validates :indirizzo_ristorante, :presence => true, :length => { :maximum => 30 }

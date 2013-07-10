@@ -1,3 +1,5 @@
+<!-- navbar in ogni pagina tranne che nella pagina login (pages/home) -->
+
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="header">
@@ -11,16 +13,16 @@
           <% #link_to is the Rails helper to create links (it generates <a...> tags) %>
           <li><i class="icon-home icon-white" id="iconcina"></i></li>
           <li><%=link_to "Home",    homepage_users_path %></li>
-          <li><i class="icon-user icon-white" id="iconcina"></i></li>
+          <li><i class="icon-user icon-white" id="iconcina2"></i></li>
           <li><%= link_to "Profilo", current_user %></li>
-          <li><i class="icon-globe icon-white" id="iconcina"></i></li>
+          <li><i class="icon-globe icon-white" id="iconcina3"></i></li>
           <li><%=link_to "Chi siamo",    about_path %></li>
-          <li><i class="icon-envelope icon-white" id="iconcina"></i></li>
+          <li><i class="icon-envelope icon-white" id="iconcina4"></i></li>
           <li><%=link_to "Contattaci",    contact_path %></li>
-          <li><i class="icon-comment icon-white" id="iconcina"></i></li>
+          <li><i class="icon-comment icon-white" id="iconcina5"></i></li>
           <li><%=link_to "Faq",  faq_path %></li>
           <% if signed_in? %>
-              <li><i class="icon-off icon-white" id="iconcina"></i></li>
+              <li><i class="icon-off icon-white" id="iconcina6"></i></li>
               <li><%= link_to "Esci", signout_path, method: "delete" %></li>
           <% else %>
               <li><%=link_to "Sign in", signin_path %></li>

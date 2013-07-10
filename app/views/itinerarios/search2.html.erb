@@ -1,15 +1,18 @@
-<% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
 <% provide :title, 'Risultati ricerca itinerari' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 
-<a href=<%= homepage_users_path %>>
-  <div class="img_logo">
-    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
-  </div>
-</a>
-
+<!-- Canvas img -->
 <div id="tot_colonnasx_home">
+
+  <a href=<%= homepage_users_path %>>
+    <div class="img_logo">
+      <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+    </div>
+  </a>
+
+
   <canvas id="canvas_img" width="500" height="600">Non supportato</canvas>
 
   <script type="text/javascript">
@@ -25,16 +28,15 @@
   </script>
 </div>
 
+
+<!-- Risultati della ricerca itinerari per città -->
 <div id="tot_colonnadx_home">
-
-
 
   <div class="span8">
     <h2> Risultati della ricerca per la citta di <%= params[:search2] %>: </h2>
     <% @itinerarios = Itinerario.search2(params[:search2]).paginate(page: params[:page], :per_page => 10)  %>
 
     <% if @itinerarios.any? %>
-
         <ul class="users">
           <%= render @itinerarios %>
         </ul>
@@ -44,7 +46,6 @@
 </div>
 
 
-</div>
 
 
 

@@ -1,8 +1,9 @@
 <% provide :title, 'Dettagli itinerario' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 
-<div id="tot_colonnasx_home" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<div id="tot_colonnasx_home" >
 
     <a href=<%= homepage_users_path %>>
       <div class="img_logo">
@@ -10,9 +11,9 @@
       </div>
     </a>
 
+  <!-- Canvas img -->
   <div id="mappa">
-      <canvas id="canvas_img" width="500" height="500
-      ">Non supportato</canvas>
+      <canvas id="canvas_img" width="500" height="500">Non supportato</canvas>
 
       <script type="text/javascript">
           var canvas3 = document.getElementById('canvas_img');
@@ -33,66 +34,74 @@
 <div id="tot_colonnadx_home">
 
     <div class="dati_form">
+      <!-- Info itinerario -->
+      <h2 class="sub_itinerari"><%= @itinerario.nome_itinerario %></h2>  <h3>a <%= @itinerario.citta %></h3>
+      <h3>Durata: <%= @itinerario.num_giorni %> giorni    </h3>
+      <br/>
 
       <% if current_user.id!=@itinerario.user_id %>
-
           <%= render 'vote_form' if signed_in? %>
-          <% else %>
-
-
+      <% else %>
+          <h3><%= link_to 'delete', @itinerario, method: :delete, data: { confirm: 'Are you sure?' } %> </h3>
       <% end %>
 
-        <h2 class="sub_itinerari"><%= @itinerario.nome_itinerario %></h2>  <h3>a <%= @itinerario.citta %></h3>
-        <h3>Durata: <%= @itinerario.num_giorni %> giorni    </h3>
-        <br/>
-      <h3><%= link_to 'delete', @itinerario, method: :delete, data: { confirm: 'Are you sure?' } %> </h3>
-
       <br/>
-         <label id="Label"> Voti ricevuti: <%= @itinerario.voto %> </label>
+      <label id="Label"> Voti ricevuti: <%= @itinerario.voto %> </label>
 
-          <% if Hotel.find_by_itinerario_id(@itinerario_id)!=nil %>
+      <!-- Se presente mostra info Hotel-->
+      <% if Hotel.find_by_itinerario_id(@itinerario_id)!=nil %>
             <div class="sub_dati_form">
                 <h2>Hotel:</h2>
-                <h3><% @hotel = Hotel.find_by_itinerario_id(@itinerario_id) %>
+
+                <% @hotel = Hotel.find_by_itinerario_id(@itinerario_id) %>
                 <% @hotel_id = @hotel.id %>
-                <%= link_to Hotel.find_by_itinerario_id(@itinerario_id).nome_hotel, @hotel %>
-                in <%= Hotel.find_by_itinerario_id(@itinerario_id).indirizzo_hotel %>
-                <br/>
+
+                <h1><%= link_to Hotel.find_by_itinerario_id(@itinerario_id).nome_hotel, @hotel %></h1>
+                <h3>in <%= Hotel.find_by_itinerario_id(@itinerario_id).indirizzo_hotel %>
+                <br/><br/>
+
                 Spesa/notte: <%= Hotel.find_by_itinerario_id(@itinerario_id).spesa_hotel %>
-                <br/>
-                  <% if Hotel.find_by_itinerario_id(@itinerario_id).commenti_hotel.empty?%>
-                  <%else%>
+                <br/><br/>
+
+                <% if Hotel.find_by_itinerario_id(@itinerario_id).commenti_hotel.empty?%>
+                <%else%>
                       Commenti: <%= Hotel.find_by_itinerario_id(@itinerario_id).commenti_hotel %>
-                  <%end%>
+                <%end%>
                 <br/>
                 <br/>
-                      <% if current_user.id==@itinerario.user_id %>
-                 <h3> <%=  link_to 'Modifica hotel', edit_hotel_path(@itinerario_id) %> </h3>
-                      <% end %>
-            <% else %>
+
+                <% if current_user.id==@itinerario.user_id %>
+                <h3> <%=  link_to 'Modifica hotel', edit_hotel_path(@itinerario_id) %> </h3>
+                <% end %>
+      <% else %>
           <br/>
 
+          <!-- Se mancano hotel, ristorante e luogo posso completare itinerario -->
           <% if current_user.id==@itinerario.user_id %>
                  <h3><%=  link_to 'Completa itinerario', new_hotel_path(:itinerario_id => @itinerario_id) %> </h3>
-                        <% end %></h3>
-            </div>
-          <% end %>
+          <% end %></h3>
+    </div>
+      <% end %>
 
-          <% if Ristorante.find_by_itinerario_id(@itinerario_id)!=nil %>
+    <!-- Se presente mostra info Ristorante -->
+    <% if Ristorante.find_by_itinerario_id(@itinerario_id)!=nil %>
             <div class="sub_dati_form">
                 <h2>Ristorante: </h2>
                 <% @ristorante = Ristorante.find_by_itinerario_id(@itinerario_id)%>
-                <h3><%= link_to Ristorante.find_by_itinerario_id(@itinerario_id).nome_ristorante, @ristorante %>
-                in <%= Ristorante.find_by_itinerario_id(@itinerario_id).indirizzo_ristorante %>
-                <br/>
+                <h1><%= link_to Ristorante.find_by_itinerario_id(@itinerario_id).nome_ristorante, @ristorante %></h1>
+                <h3>in <%= Ristorante.find_by_itinerario_id(@itinerario_id).indirizzo_ristorante %>
+                <br/></br>
+
                 Spesa/notte: <%= Ristorante.find_by_itinerario_id(@itinerario_id).spesa_ristorante %>
-                <br/>
+                <br/></br>
                   <% if Ristorante.find_by_itinerario_id(@itinerario_id).commenti_ristorante.empty? %>
                    <%else%>
                       Commenti: <%= Ristorante.find_by_itinerario_id(@itinerario_id).commenti_ristorante %>
                   <% end %>
                 <br/>
                 <br/>
+
+                <!-- link per modificare dati ristorante -->
                 <% if current_user.id==@itinerario.user_id %>
                       <%=  link_to 'Modifica ristorante', edit_ristorante_path(@itinerario_id) %>
                 <% end %>
@@ -100,41 +109,44 @@
                 <% if Hotel.find_by_itinerario_id(@itinerario_id)!=nil %>
                        <% if current_user.id==@itinerario.user_id %>
                   </br>
-                            <%=  link_to 'Completa itinerario', new_ristorante_path(:itinerario_id => @itinerario_id) %>
-                       <%end%>
-                <% end %>
+                       <%=  link_to 'Completa itinerario', new_ristorante_path(:itinerario_id => @itinerario_id) %>
+                <%end%>
+          <% end %>
           </h3>
           </div>
-          <% end %>
+    <% end %>
 
-         <% if Luogo.find_by_itinerario_id(@itinerario_id)!=nil %>
+
+    <!-- Se presente, mostra info Luogo -->
+    <% if Luogo.find_by_itinerario_id(@itinerario_id)!=nil %>
             <div class="sub_dati_form">
                 <h2>Luogo d'interesse: </h2>
                 <% @luogo =  Luogo.find_by_itinerario_id(@itinerario_id)%>
-                <h3><%= link_to Luogo.find_by_itinerario_id(@itinerario_id).nome_luogo, @luogo %>
-                in <%= Luogo.find_by_itinerario_id(@itinerario_id).indirizzo_luogo %>
-                <br/>
+                <h1><%= link_to Luogo.find_by_itinerario_id(@itinerario_id).nome_luogo, @luogo %></h1>
+                <h3>in <%= Luogo.find_by_itinerario_id(@itinerario_id).indirizzo_luogo %>
+                <br/></br>
+
                   <% if Luogo.find_by_itinerario_id(@itinerario_id).commenti_luogo.empty? %>
                   <% else %>
                       Commenti: <%= Luogo.find_by_itinerario_id(@itinerario_id).commenti_luogo %>
                   <%end%>
                 <br/>
                 <br/>
+
                 <% if current_user.id==@itinerario.user_id %>
                       <%=  link_to 'Modifica luogo', edit_luogo_path(@itinerario_id) %>
                 <% end %>
          <% else %>
                 <% if Ristorante.find_by_itinerario_id(@itinerario_id)!=nil %>
                       <% if current_user.id==@itinerario.user_id %>
-                  </br>
-
-                  <%=  link_to 'Completa itinerario', new_luogo_path(:itinerario_id => @itinerario_id) %>
-                      <%end%>
-                <% end %>
+                      </br>
+                      <%=  link_to 'Completa itinerario', new_luogo_path(:itinerario_id => @itinerario_id) %>
+                <%end%>
+          <% end %>
           </h3>
             </div>
-          <% end %>
-    </div>
+    <% end %>
+          </div>
  </div>
 
 

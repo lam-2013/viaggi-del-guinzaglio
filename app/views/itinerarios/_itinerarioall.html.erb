@@ -1,3 +1,4 @@
+<!-- Vista parziale nel carousel della homepage : gli ultimi tre itinerari -->
 <ol class="itinerari">
     <% @itinerarios=Itinerario.all.paginate(page: params[:page], :per_page => 3)  %>
     <% @itinerarios.each do |itinerario|  %>

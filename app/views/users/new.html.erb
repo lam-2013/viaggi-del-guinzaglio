@@ -1,4 +1,6 @@
 <% provide :title, 'Registrazione' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
+<%= render 'layouts/header' %>
 
 <div class="img_logo" xmlns="http://www.w3.org/1999/html">
   <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
@@ -7,8 +9,8 @@
 <div class="dati_form">
 
   <h2>Inserisci i tuoi dati:</h2>
-
-<%= form_for @user, :url => {:action => "create"} do |f|%>
+  <!-- form per creazione nuovo utente -->
+  <%= form_for @user, :url => {:action => "create"} do |f|%>
     <%= render 'shared/error_messages', object: f.object%>
 
     <%= f.label :name, 'Nome:'%>
@@ -24,5 +26,5 @@
     <%= f.password_field :password_confirmation %><br /><br/>
 
     <%= f.submit 'Crea il mio account', :type => :image, :src => "/assets/Ok.png" %>
-<% end %>
+  <% end %>
 </div>

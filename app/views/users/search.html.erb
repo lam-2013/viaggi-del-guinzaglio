@@ -1,15 +1,19 @@
-<% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
 <% provide :title, 'Risultati ricerca' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 
-<a href=<%= homepage_users_path %>>
-  <div class="img_logo">
-    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
-  </div>
-</a>
+
 
 <div id="tot_colonnasx_home">
+
+  <a href=<%= homepage_users_path %>>
+    <div class="img_logo">
+      <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+    </div>
+  </a>
+
+  <!-- Canvas img-->
   <canvas id="canvas_img" width="500" height="600">Non supportato</canvas>
 
   <script type="text/javascript">
@@ -26,6 +30,8 @@
 </div>
 
 <div id="tot_colonnadx_home">
+
+      <!-- Risultati ricerca per utente-->
 
       <h2> Risultati della ricerca per l'utente <%= params[:search] %>: </h2>
       <% @users = User.search(params[:search]).paginate(page: params[:page], :per_page => 10)  %>

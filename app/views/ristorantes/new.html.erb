@@ -1,6 +1,5 @@
-
 <% provide :title, 'Nuovo Ristorante' %>
-
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 
@@ -14,6 +13,7 @@
     </div>
   </a>
 
+    <!-- Form per creazione nuovo ristorante -->
     <div class="dati_form">
 
       <h2>Piatti e ciotole:</h2>
@@ -41,7 +41,7 @@
 </div>
 
 <div id="tot_colonnadx_home">
-
+  <!-- Canvas -->
   <div class="canvasbottoni">
 
     <canvas id="canvas_img" width="450" height="450">Non supportato</canvas>

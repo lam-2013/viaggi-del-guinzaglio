@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   # each user can have many followers, through reverse relationships
   has_many :followers, through: :reverse_relationships
 
+  # un utente può votare più itinerari, quindi id_utente può essere presente più volte nella tabella Votatos
   has_many :votatos
 
   # put the email in downcase before saving the user
@@ -30,20 +31,20 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :length => { :minimum => 6}
   validates :password_confirmation, :presence => true
 
-  # create user from oauth data
+  # creazione utente da dati oauth
   def self.create_with_omniauth(auth)
     create! do |user|
       if auth[:provider] == 'twitter'
         user.twitter_uid = auth[:uid]
         user.name = auth[:info][:name]
-  # compose a fake email, since twitter does not provide this information
+        # fake email
         user.email = "#{auth[:info][:nickname]}@twitter.com"
       elsif auth[:provider] == 'facebook'
         user.facebook_uid = auth[:credentials][:token]
         user.name = auth[:info][:name]
         user.email = auth[:info][:email]
       end
-  # generate a random password
+      # random password
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
     end
@@ -65,14 +66,16 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  # trova nella tabella Votatos se l'utente ha già votato uno specifico itinerario
   def vote?(itinerario)
     votatos.find_by_itinerario_id(itinerario.id)
   end
 
-
+  # crea nuova riga nella tabella Votatos: user_id votante - itinerario_id votato
   def vote!(itinerario)
     votatos.create!(itinerario_id: itinerario.id)
   end
+
 
   #metodo privato
   private
@@ -88,10 +91,5 @@ class User < ActiveRecord::Base
       scoped
     end
   end
-
-
-
-
-
 
 end

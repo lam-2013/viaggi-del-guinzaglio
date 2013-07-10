@@ -94,22 +94,8 @@ p {
 
 /* header */
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  letter-spacing: -1px;
-  padding-top: 13px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
 
-#iconcina{
+#iconcina, #iconcina2, #iconcina3, #iconcina4, #iconcina5, #iconcina6{
   margin-top: 11px;
 }
 
@@ -254,18 +240,14 @@ input {
 }
 
 .info_struttura{
-  float: left;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 160px;
   margin-left: 40px;
   padding: 30px;
   border: 1px solid lightgray;
 }
 
-.img_struttura{
-  float: right;
-  margin-right: 50px;
-}
+
 
 /* miscellaneous */
 
@@ -348,11 +330,6 @@ input {
 .dati_form {
   background-color: #ffffff;
   font-size: 16px;
-  //margin-top: 25px;
-
-  -webkit-border-radius: 70px 100px;
-  -moz-border-radius: 70px 100px;
-  border-radius: 70px 70px;
   padding-left: 45px;
   padding-top: 30px;
   text-align: center;
@@ -374,18 +351,17 @@ input {
 
 
 /*pagina Home page*/
-
+/* logo presente in ogni pagina*/
 .img_logo{
   width: 230px;
   padding-top:30px;
-  //padding-left: 10px;
-  //margin-left: 120px;
   text-align: center;
 }
 
 #tot_colonnasx_home{
   float: left;
   width: 40%;
+  margin-bottom: 30px;
 }
 
 #colonnasx_home{
@@ -427,6 +403,8 @@ input {
   float: right;
   width: 55%;
   text-align: center;
+  margin-bottom: 30px;
+
 
 
   #benvenuto{

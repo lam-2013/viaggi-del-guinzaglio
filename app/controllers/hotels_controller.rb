@@ -4,18 +4,20 @@ class HotelsController < ApplicationController
   # check if the user is allowed to delete a post
   before_filter :correct_user, only: :destroy
 
+
   def new
     @itinerario = Itinerario.find(params[:itinerario_id])
     @hotel = Hotel.new
   end
 
+
+  # crea un nuovo hotel collegato all'itinerario id
   def create
-    # build a new post from the information contained in the "new post" form
     @itinerario=Itinerario.find(params[:hotel][:itinerario_id])
     @hotel = @itinerario.hotels.build(params[:hotel])
 
     if @hotel.save
-      #flash[:success] = 'Hotel created!'
+      # manda al form di compilazione di un nuovo ristorante
       redirect_to new_ristorante_path(:itinerario_id => @itinerario.id)
     else
       render 'new'
@@ -23,32 +25,29 @@ class HotelsController < ApplicationController
 
   end
 
+  # trova hotel con l'id dell'itinerario selezionato per la modifica
   def edit
-       #@itinerario_id = Itinerario.find(params[:itinerario_id]).id
        @hotel = Hotel.find_by_itinerario_id(params[:id])
   end
 
+  # aggiorna dati hotel dopo la modifica
   def update
-
-    #@itinerario_id=Hotel.find(params[:id]).itinerario_id
     @itinerario=Itinerario.find(params[:hotel][:itinerario_id])
     @hotel=Hotel.find_by_itinerario_id(@itinerario.id)
 
     if @hotel.update_attributes(params[:hotel])
-      # handle a successful update
-      #flash[:success] = 'Hotel updated'
-      # go to the user profile
       redirect_to @itinerario
     else
-      # handle a failed update
       render 'edit'
     end
   end
 
+  # completa itinerario quando l'utente interrompe creazione itinerario e poi la riprende
   def add
     @itinerario = Itinerario.find(params[:itinerario])
     @hotel = Hotel.new
   end
+
 
   def show
     @hotel = Hotel.find(params[:id])

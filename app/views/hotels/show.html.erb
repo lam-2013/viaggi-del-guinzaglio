@@ -1,13 +1,20 @@
 <% provide :title, 'Dettagli Hotel' %>
+
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
-<a href=<%= homepage_users_path %>>
-  <div class="img_logo">
-    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
-  </div>
-</a>
 
-<div class="info_struttura">
+
+<div id="tot_colonnasx_home">
+
+  <a href=<%= homepage_users_path %>>
+      <div class="img_logo">
+        <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+      </div>
+  </a>
+
+  <!-- Riepilogo delle informazioni sulla struttura selezionata -->
+  <div class="info_struttura">
     <h2><%= @hotel.nome_hotel %>  </h2>
     </br>
     <h3>
@@ -17,11 +24,16 @@
         Costo/notte: <%= @hotel.spesa_hotel %>
         <br/>
         <br/>
-        Commenti degli utenti: <%= @hotel.commenti_hotel %>
+        <% if @hotel.commenti_hotel.empty?%>
+        <%else%>
+          Commenti degli utenti: <%= @hotel.commenti_hotel %>
+        <%end%>
     </h3>
+  </div>
 </div>
 
-<div class="img_struttura">
+<!-- Foto -->
+<div id="tot_colonnadx_home">
   <img src="/assets/hotel.JPG" width="600"/>
 
 </div>

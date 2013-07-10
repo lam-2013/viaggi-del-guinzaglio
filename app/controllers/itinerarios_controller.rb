@@ -8,12 +8,11 @@ class ItinerariosController < ApplicationController
     @itinerario = Itinerario.new
   end
 
+  # creato un nuovo itinerario, lo salva nel db e indirizza al form dell'hotel
   def create
-    # build a new post from the information contained in the "new post" form
     @itinerario = current_user.itinerarios.build(params[:itinerario])
 
     if @itinerario.save
-      #flash[:success] = 'Itinerario created!'
       redirect_to new_hotel_path(:itinerario_id => @itinerario.id)
     else
       render 'new'
@@ -23,6 +22,7 @@ class ItinerariosController < ApplicationController
   def show
     @itinerario = Itinerario.find(params[:id])
     @itinerario_id = @itinerario.id
+    # prende dal db contenuto di Votatos: id_user votante - id_itinerario votato
     @votatos=Votato.all
   end
 

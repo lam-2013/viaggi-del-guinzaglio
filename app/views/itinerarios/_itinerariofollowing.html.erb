@@ -1,11 +1,11 @@
+<!-- Vista parziale nel carousel della homepage : gli itinerari dei following del current -->
 <ol class="itinerari">
   <span class="content">
     <% @itinerarios = Itinerario.find_all_by_user_id(current_user.followed_users).paginate(page: params[:page], :per_page => 3)  %>
     <% @itinerarios.each do |itinerario|  %>
                <%= render itinerario %>
-        <h3>Itinerario di <%= link_to User.find(itinerario.user_id).name, User.find(itinerario.user_id)  %></h3>
-
-              <% end %>
+               <h3>Itinerario di <%= link_to User.find(itinerario.user_id).name, User.find(itinerario.user_id)  %></h3>
+    <% end %>
       </span>
 
 </ol>

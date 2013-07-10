@@ -1,27 +1,36 @@
 <% provide :title, 'Dettagli Ristorante' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
-<a href=<%= homepage_users_path %>>
-  <div class="img_logo">
-    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
-  </div>
-</a>
 
-<div class="info_struttura">
-  <h2><%= @ristorante.nome_ristorante %>  </h2>
-  </br>
-  <h3>
-    Indirizzo: <%= @ristorante.indirizzo_ristorante %>
-    <br/>
-    <br/>
-    Costo/pasto: <%= @ristorante.spesa_ristorante %>
-    <br/>
-    <br/>
-    Commenti degli utenti: <%= @ristorante.commenti_ristorante %>
-  </h3>
+
+
+<div id="tot_colonnasx_home">
+
+  <a href=<%= homepage_users_path %>>
+    <div class="img_logo">
+      <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+    </div>
+  </a>
+
+  <div class="info_struttura">
+      <h2><%= @ristorante.nome_ristorante %>  </h2>
+      </br>
+      <h3>
+        Indirizzo: <%= @ristorante.indirizzo_ristorante %>
+        <br/>
+        <br/>
+        Costo/pasto: <%= @ristorante.spesa_ristorante %>
+        <br/>
+        <br/>
+        <% if @ristorante.commenti_ristorante.empty?%>
+        <%else%>
+            Commenti degli utenti: <%= @ristorante.commenti_ristorante %>
+        <%end%>      </h3>
+    </div>
 </div>
 
-<div class="img_struttura">
+<div id="tot_colonnadx_home">
   <img src="/assets/ristorante.jpg" width="600"/>
 
 </div>

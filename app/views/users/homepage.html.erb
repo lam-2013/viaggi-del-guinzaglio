@@ -1,32 +1,33 @@
 <% provide :title, 'Home page' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 <div id="tot_colonnasx_home">
-
 
     <div class="img_logo" xmlns="http://www.w3.org/1999/html">
       <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
     </div>
 
+  <!-- Div dei concorsi -->
   <div class="background">
-  <h2 class="sub_itinerari"> Partecipa ai nostri concorsi:</h2>
-    <div id="colonnasx_home">
+      <h2 class="sub_itinerari"> Partecipa ai nostri concorsi:</h2>
+        <div id="colonnasx_home">
 
-            <h2>A lume di CANdela</h2>
-        <h3>E' la community a quattro zampe che ti premia!
-        Se il tuo itinerario sarà il più votato del mese ti aggiudicherai una
-        cena omaggio per due persone presso uno dei ristoranti convenzionati della tua città.
-        Ospite d'eccezione: il tuo cane!</h3>
-    </div>
+                <h2>A lume di CANdela</h2>
+            <h3>E' la community a quattro zampe che ti premia!
+            Se il tuo itinerario sarà il più votato del mese ti aggiudicherai una
+            cena omaggio per due persone presso uno dei ristoranti convenzionati della tua città.
+            Ospite d'eccezione: il tuo cane!</h3>
+        </div>
 
-      <div id="colonnasx_home2">
+        <div id="colonnasx_home2">
 
-        <h2>Reporter a quattro zampe</h2>
-        <h3>L'itinerario più bello e ricco del mese sarà pubblicato sulla
-        prestigiosa rivista Traveller. Tu e il tuo fidato amico
-        protagonisti di un inedito reportage! Iscriviti!   </h3>
+            <h2>Reporter a quattro zampe</h2>
+            <h3>L'itinerario più bello e ricco del mese sarà pubblicato sulla
+            prestigiosa rivista Traveller. Tu e il tuo fidato amico
+            protagonisti di un inedito reportage! Iscriviti!   </h3>
 
-    </div>
+        </div>
   </div>
 
 
@@ -34,6 +35,7 @@
 
 
 <div id="tot_colonnadx_home">
+
   <div id="benvenuto">
     <h3>Ciao</h3>
     <h2> <%= current_user.name %>  </h2>
@@ -41,10 +43,11 @@
 
     <div class="colonnadx_home">
 
+      <!-- Carousel che mostra le tre diverse viste parziali -->
+
       <link rel="stylesheet" href="src/m-carousel.css">
       <link rel="stylesheet" href="src/m-carousel-style.css">
       <script src="src/m-carousel.js"></script>
-
 
       <div class="m-carousel m-fluid" id="m-carousel">
       <div id="#m-carousel" class="m-carousel-controls m-carousel-pagination">
@@ -55,9 +58,10 @@
       </div>
 
       <div class="m-carousel-inner">
-          <div id="all" class="m-item active">
+          <div id="all" class="m-item">
 
             <%= render 'itinerarios/itinerarioall'  %>
+            <!-- footer che rimanda alla pagina con tutti gli itinerari in ordine di caricamento -->
             <%= render 'layouts/footer1' %>
 
 
@@ -66,6 +70,7 @@
           <div id="following" class="m-item">
 
             <%= render 'itinerarios/itinerariofollowing'  %>
+            <!-- footer che rimanda alla pagina con tutti gli itinerari dei following -->
             <%= render 'layouts/footer2' %>
 
           </div>
@@ -73,6 +78,7 @@
           <div id="voted" class="m-item">
 
             <%= render 'itinerarios/itinerariovoted'  %>
+            <!-- footer che rimanda alla pagina con la classifica di tutti gli itinerari in ordine di voto -->
             <%= render 'layouts/footer3' %>
 
           </div>
@@ -84,5 +90,5 @@
 
 </div>
 
-    </div>
+</div>
 

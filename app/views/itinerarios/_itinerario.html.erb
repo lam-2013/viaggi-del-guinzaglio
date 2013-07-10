@@ -1,15 +1,14 @@
 <li>
   <span class="content">
-
     <h2><%= link_to itinerario.nome_itinerario, itinerario %></h2><h1> a <%= itinerario.citta %></h1>
     <% if current_user?(itinerario.user) %>
     <h3><%= link_to 'delete', itinerario, method: :delete, data: { confirm: 'Are you sure?' } %></h3>
-    <% end %> </span>
+    <% end %>
+  </span>
+
   <span class="timestamp">
     <h3>Itinerario postato <%= time_ago_in_words(itinerario.created_at) %> ago
     <label id="Label">Voti ricevuti: <%= itinerario.voto %> </label></h3>
-
-
-      </span>
+  </span>
 
 </li>

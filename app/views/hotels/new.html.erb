@@ -1,13 +1,13 @@
-
 <% provide :title, 'Nuovo Hotel' %>
 
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
-
 
 
 <% @itinerario_id = @itinerario.id %>
 
 <div id="tot_colonnasx_home">
+
   <a href=<%= homepage_users_path %>>
     <div class="img_logo">
       <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
@@ -42,7 +42,7 @@
 
 
 <div id="tot_colonnadx_home">
-
+    <!-- Applicazioni Canvas con foto che cambiano cliccando sui bottoni-->
     <div class="canvasbottoni">
 
       <canvas id="canvas_img" width="450" height="450">Non supportato</canvas>
@@ -79,6 +79,5 @@
         }
     </script>
 </div>
-
 
 

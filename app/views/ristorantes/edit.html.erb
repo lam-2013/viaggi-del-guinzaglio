@@ -1,6 +1,5 @@
-
 <% provide :title, 'Modifica Ristorante' %>
-
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 <a href=<%= homepage_users_path %>>
@@ -9,6 +8,7 @@
   </div>
 </a>
 
+<!-- Form per modifica dati ristorante-->
 <div class="dati_form">
 
   <h2>Modifica le informazioni sul ristorante <%= @ristorante.nome_ristorante %></h2>
@@ -30,7 +30,7 @@
 
       <%= f.hidden_field :itinerario_id, value: @ristorante.itinerario_id %>
 
-      <%= f.submit 'Salva', :action => "create", class: "brn btn-large btn-primary" %>
+      <%= f.submit 'Salva', :action => "create", :type => :image, :src => "/assets/salva.png" %>
   <% end %>
 </div>
 

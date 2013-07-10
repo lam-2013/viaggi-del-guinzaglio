@@ -1,6 +1,7 @@
 class Luogo < ActiveRecord::Base
   attr_accessible :commenti_luogo, :indirizzo_luogo, :nome_luogo, :itinerario_id
 
+  # appartiene a itinerario
   belongs_to :itinerario
 
   validates :indirizzo_luogo, :presence => true, :length => { :maximum => 30 }

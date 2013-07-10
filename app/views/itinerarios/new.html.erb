@@ -1,13 +1,16 @@
 <% provide :title, 'Nuovo Itinerario' %>
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 <div id="tot_colonnasx_home">
+
   <a href=<%= homepage_users_path %>>
     <div class="img_logo">
       <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
     </div>
   </a>
 
+    <!-- Form per creare un nuovo itinerario -->
     <div class="dati_form">
             <h2>Crea un nuovo itinerario</h2>
 
@@ -32,9 +35,8 @@
 
 <div id="tot_colonnadx_home">
 
-
+  <!-- Canvas -->
   <div class="canvasbottoni">
-
 
     <canvas id="canvas_img" width="450" height="450">Non supportato</canvas>
     <div id="titolo_nuovo_it"> <h3>Bastano tre semplici passi...</h3> </div>

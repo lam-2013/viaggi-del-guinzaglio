@@ -1,11 +1,13 @@
+<!-- Vista parziale nel carousel della homepage : gli itinerari più votati -->
+
 <ol class="itinerari">
   <span class="content">
     <% @itinerarios = Itinerario.all.sort_by{|e| -e[:voto]}.paginate(page: params[:page], :per_page => 3)   %>
     <% @itinerarios.each do |itinerario|  %>
-               <%= render itinerario %>
+        <%= render itinerario %>
         <h3>Itinerario di <%= link_to User.find(itinerario.user_id).name, User.find(itinerario.user_id)  %></h3>
 
-              <% end %>
-      </span>
+    <% end %>
+  </span>
 
 </ol>

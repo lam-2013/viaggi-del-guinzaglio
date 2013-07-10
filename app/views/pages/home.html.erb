@@ -1,6 +1,7 @@
 <% provide :title %>
 
-<audio autoplay xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<!-- Tag audio -->
+<audio autoplay>
   <source src="assets/Dogs.mp3" type="audio/mp3">
 </audio>
 
@@ -9,25 +10,26 @@
   <div id="img_home">
     <img src="assets/Viaggi del Guizaglio_Logo7.png" alt="Logo" />
   </div>
-    <div class="login">
-      <%= render 'shared/login' %>
 
+  <div class="login">
+      <%= render 'shared/login' %>
 
       <p id="seinuovo">Accedi con:
       <%= link_to image_tag("Twitter_Logo.gif", width: 43), '/auth/twitter' %>
       <%= link_to image_tag("facebook_icon.png", width: 45), '/auth/facebook' %>
       </p>
-    </div>
+  </div>
 
 
-       <div class="registrati">
+  <div class="registrati">
           Sei nuovo?
-            <%= link_to "Registrati adesso", signup_path %>
-    </div>
+          <%= link_to "Registrati adesso", signup_path %>
+  </div>
 </div>
 
 <div id="colonnadx">
 
+  <!-- Tag video -->
   <video id="movie" width="450" height="600"  autoplay loop>
     <source src="/assets/Maddie_Video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2, H264"' />
     Your browser does not support the video tag.

@@ -9,13 +9,12 @@ class RistorantesController < ApplicationController
     @ristorante = Ristorante.new
   end
 
+  # crea un nuovo ristorante collegato all'itinerario id
   def create
-    # build a new post from the information contained in the "new post" form
     @itinerario=Itinerario.find(params[:ristorante][:itinerario_id])
     @ristorante = @itinerario.ristorantes.build(params[:ristorante])
 
     if @ristorante.save
-      #flash[:success] = 'Ristorante created!'
       redirect_to new_luogo_path(:itinerario_id => @itinerario.id)
     else
       render 'new'
@@ -23,25 +22,22 @@ class RistorantesController < ApplicationController
 
   end
 
+
+  # trova ristorante con l'id dell'itinerario selezionato per la modifica
   def edit
-
-    #@itinerario_id= Itinerario.find(params[:itinerario]).id
     @ristorante = Ristorante.find_by_itinerario_id(params[:id])
-
   end
 
+
+  # aggiorna dati ristorante dopo la modifica
   def update
 
     @itinerario=Itinerario.find(params[:ristorante][:itinerario_id])
     @ristorante=Ristorante.find_by_itinerario_id(@itinerario.id)
 
     if @ristorante.update_attributes(params[:ristorante])
-      # handle a successful update
-      #flash[:success] = 'Ristorante updated'
-      # go to the user profile
       redirect_to  @itinerario
     else
-      # handle a failed update
       render 'edit'
     end
   end

@@ -9,13 +9,12 @@ class LuogosController < ApplicationController
     @luogo = Luogo.new
   end
 
+  # crea un nuovo luogo collegato all'itinerario id
   def create
-    # build a new post from the information contained in the "new post" form
     @itinerario=Itinerario.find(params[:luogo][:itinerario_id])
     @luogo = @itinerario.luogos.build(params[:luogo])
 
     if @luogo.save
-      #flash[:success] = 'Luogo created!'
       redirect_to @itinerario
     else
       render 'new'
@@ -23,34 +22,28 @@ class LuogosController < ApplicationController
 
   end
 
+  # trova luogo con l'id dell'itinerario selezionato per la modifica
   def edit
-
-    #@itinerario_id =  Itinerario.find(params[:itinerario]).id
     @luogo = Luogo.find_by_itinerario_id(params[:id])
-
-
   end
 
-  def update
 
+  # aggiorna dati hotel dopo la modifica
+  def update
      @itinerario=Itinerario.find(params[:luogo][:itinerario_id])
      @luogo=Luogo.find_by_itinerario_id(@itinerario.id)
 
     if @luogo.update_attributes(params[:luogo])
-      # handle a successful update
-      #flash[:success] = 'Luogo updated'
-      # go to the user profile
       redirect_to  @itinerario
     else
-      # handle a failed update
       render 'edit'
     end
   end
 
+
   def show
     @luogo = Luogo.find(params[:id])
   end
-
 
 
   def destroy

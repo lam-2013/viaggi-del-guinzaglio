@@ -1,5 +1,5 @@
 <% provide :title, 'Modifica Luogo' %>
-
+<!-- header è presente in tutte le pagine tranne che in quella di login (pages/home) -->
 <%= render 'layouts/header' %>
 
 <a href=<%= homepage_users_path %>>
@@ -8,6 +8,7 @@
   </div>
 </a>
 
+<!-- form per modifca dati luogo -->
 <div class="dati_form">
 
   <h2>Modifica le informazioni su <%= @luogo.nome_luogo %></h2>
@@ -26,7 +27,7 @@
 
       <%= f.hidden_field :itinerario_id, value: @luogo.itinerario_id  %>
 
-      <%= f.submit 'Salva', class: "brn btn-large btn-primary" %>
+      <%= f.submit 'Salva', :type => :image, :src => "/assets/salva.png" %>
   <% end %>
 
 </div>

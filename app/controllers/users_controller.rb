@@ -8,11 +8,10 @@ class UsersController < ApplicationController
 
 
   def show
-
       @user=User.find(params[:id])
       @itinerario = current_user.itinerarios.build if signed_in?
 
-      #per vedere i post
+      #itinerari fatti dall'utente ( current o selezionato )
       @itinerarios = @user.itinerarios.paginate(page: params[:page], :per_page => 3)
 
   end
@@ -20,18 +19,18 @@ class UsersController < ApplicationController
   def new
     auth_hash = request.env['omniauth.auth']
     if params[:provider].nil?
-# init the user variable to be used in the sign up form
+      # init the user variable to be used in the sign up form
       @user = User.new
     else
-# oauth
+      # oauth
       if auth_hash.nil? #redirect to the service provider auth page
         redirect_to '/auth/'+params[:provider];
-# twitter is the service provider
+      # twitter
       elsif params[:provider]=='twitter'
         @user = User.new(
             twitter_uid: auth_hash[:uid],
             name: auth_hash[:info][:name])
-# facebook is the service provider
+      # facebook
       elsif params[:provider]=='facebook'
         @user = User.new(
             facebook_uid: auth_hash[:credentials][:token],
@@ -41,11 +40,11 @@ class UsersController < ApplicationController
     end
   end
 
+
   def create
     @user=User.new(params[:user])
     if @user.save
-      #redirect_to '/home'
-      #flash[:success] = "Benvenuto!"
+      # dopo aver creato l'utente mostra la sua pagina profilo
       sign_in @user
       redirect_to homepage_users_path
     else
@@ -60,22 +59,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    #@user=User.find(params[:id])
 
   end
 
   def update
-    #@user=User.find(params[:id])
 
+    # aggiorna dati dell'utente
     if @user.update_attributes(params[:user])
-      # handle a successful update
-      flash[:success] = 'Profile updated'
-      # re-login the user
+
       sign_in @user
-      # go to the user profile
       redirect_to @user
     else
-      # handle a failed update
+      # aggiornamento fallito
       render 'edit'
     end
   end
