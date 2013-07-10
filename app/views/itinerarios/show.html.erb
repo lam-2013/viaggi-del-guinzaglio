@@ -1,0 +1,140 @@
+<% provide :title, 'Dettagli itinerario' %>
+<%= render 'layouts/header' %>
+
+
+<div id="tot_colonnasx_home" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+    <a href=<%= homepage_users_path %>>
+      <div class="img_logo">
+        <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+      </div>
+    </a>
+
+  <div id="mappa">
+      <canvas id="canvas_img" width="500" height="500
+      ">Non supportato</canvas>
+
+      <script type="text/javascript">
+          var canvas3 = document.getElementById('canvas_img');
+          var ctx3 = canvas3.getContext('2d');
+
+          var img3= new Image();
+          img3.src = "/assets/mappa.jpg";
+          img3.onload = function(){
+
+              ctx3.drawImage(img3,0,0);
+          }
+  </script>
+
+  </div>
+
+</div>
+
+<div id="tot_colonnadx_home">
+
+    <div class="dati_form">
+
+      <% if current_user.id!=@itinerario.user_id %>
+
+          <%= render 'vote_form' if signed_in? %>
+          <% else %>
+
+
+      <% end %>
+
+        <h2 class="sub_itinerari"><%= @itinerario.nome_itinerario %></h2>  <h3>a <%= @itinerario.citta %></h3>
+        <h3>Durata: <%= @itinerario.num_giorni %> giorni    </h3>
+        <br/>
+      <h3><%= link_to 'delete', @itinerario, method: :delete, data: { confirm: 'Are you sure?' } %> </h3>
+
+      <br/>
+         <label id="Label"> Voti ricevuti: <%= @itinerario.voto %> </label>
+
+          <% if Hotel.find_by_itinerario_id(@itinerario_id)!=nil %>
+            <div class="sub_dati_form">
+                <h2>Hotel:</h2>
+                <h3><% @hotel = Hotel.find_by_itinerario_id(@itinerario_id) %>
+                <% @hotel_id = @hotel.id %>
+                <%= link_to Hotel.find_by_itinerario_id(@itinerario_id).nome_hotel, @hotel %>
+                in <%= Hotel.find_by_itinerario_id(@itinerario_id).indirizzo_hotel %>
+                <br/>
+                Spesa/notte: <%= Hotel.find_by_itinerario_id(@itinerario_id).spesa_hotel %>
+                <br/>
+                  <% if Hotel.find_by_itinerario_id(@itinerario_id).commenti_hotel.empty?%>
+                  <%else%>
+                      Commenti: <%= Hotel.find_by_itinerario_id(@itinerario_id).commenti_hotel %>
+                  <%end%>
+                <br/>
+                <br/>
+                      <% if current_user.id==@itinerario.user_id %>
+                 <h3> <%=  link_to 'Modifica hotel', edit_hotel_path(@itinerario_id) %> </h3>
+                      <% end %>
+            <% else %>
+          <br/>
+
+          <% if current_user.id==@itinerario.user_id %>
+                 <h3><%=  link_to 'Completa itinerario', new_hotel_path(:itinerario_id => @itinerario_id) %> </h3>
+                        <% end %></h3>
+            </div>
+          <% end %>
+
+          <% if Ristorante.find_by_itinerario_id(@itinerario_id)!=nil %>
+            <div class="sub_dati_form">
+                <h2>Ristorante: </h2>
+                <% @ristorante = Ristorante.find_by_itinerario_id(@itinerario_id)%>
+                <h3><%= link_to Ristorante.find_by_itinerario_id(@itinerario_id).nome_ristorante, @ristorante %>
+                in <%= Ristorante.find_by_itinerario_id(@itinerario_id).indirizzo_ristorante %>
+                <br/>
+                Spesa/notte: <%= Ristorante.find_by_itinerario_id(@itinerario_id).spesa_ristorante %>
+                <br/>
+                  <% if Ristorante.find_by_itinerario_id(@itinerario_id).commenti_ristorante.empty? %>
+                   <%else%>
+                      Commenti: <%= Ristorante.find_by_itinerario_id(@itinerario_id).commenti_ristorante %>
+                  <% end %>
+                <br/>
+                <br/>
+                <% if current_user.id==@itinerario.user_id %>
+                      <%=  link_to 'Modifica ristorante', edit_ristorante_path(@itinerario_id) %>
+                <% end %>
+          <% else %>
+                <% if Hotel.find_by_itinerario_id(@itinerario_id)!=nil %>
+                       <% if current_user.id==@itinerario.user_id %>
+                  </br>
+                            <%=  link_to 'Completa itinerario', new_ristorante_path(:itinerario_id => @itinerario_id) %>
+                       <%end%>
+                <% end %>
+          </h3>
+          </div>
+          <% end %>
+
+         <% if Luogo.find_by_itinerario_id(@itinerario_id)!=nil %>
+            <div class="sub_dati_form">
+                <h2>Luogo d'interesse: </h2>
+                <% @luogo =  Luogo.find_by_itinerario_id(@itinerario_id)%>
+                <h3><%= link_to Luogo.find_by_itinerario_id(@itinerario_id).nome_luogo, @luogo %>
+                in <%= Luogo.find_by_itinerario_id(@itinerario_id).indirizzo_luogo %>
+                <br/>
+                  <% if Luogo.find_by_itinerario_id(@itinerario_id).commenti_luogo.empty? %>
+                  <% else %>
+                      Commenti: <%= Luogo.find_by_itinerario_id(@itinerario_id).commenti_luogo %>
+                  <%end%>
+                <br/>
+                <br/>
+                <% if current_user.id==@itinerario.user_id %>
+                      <%=  link_to 'Modifica luogo', edit_luogo_path(@itinerario_id) %>
+                <% end %>
+         <% else %>
+                <% if Ristorante.find_by_itinerario_id(@itinerario_id)!=nil %>
+                      <% if current_user.id==@itinerario.user_id %>
+                  </br>
+
+                  <%=  link_to 'Completa itinerario', new_luogo_path(:itinerario_id => @itinerario_id) %>
+                      <%end%>
+                <% end %>
+          </h3>
+            </div>
+          <% end %>
+    </div>
+ </div>
+
+

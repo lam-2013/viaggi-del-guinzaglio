@@ -1,0 +1,25 @@
+<% provide :title, 'Dettagli Luogo' %>
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+<div class="info_struttura">
+  <h2><%= @luogo.nome_luogo %>  </h2>
+  </br>
+  <h3>
+    Indirizzo: <%= @luogo.indirizzo_luogo %>
+    <br/>
+    <br/>
+    Commenti degli utenti: <%= @luogo.commenti_luogo %>
+  </h3>
+</div>
+
+<div class="img_struttura">
+  <img src="/assets/luogo.jpg" width="600"/>
+
+</div>
+

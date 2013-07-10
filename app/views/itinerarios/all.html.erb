@@ -1,0 +1,25 @@
+<% provide :title, 'Tutti gli itinerari' %>
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+  <h2>Tutti gli itinerari</h2>
+
+
+  <ol class="itinerari">
+    <% @itinerarios=Itinerario.all.paginate(page: params[:page], :per_page => 10)  %>
+    <% @itinerarios.each do |itinerario|  %>
+        <%= render itinerario %>
+        <h3>Itinerario di <%= link_to User.find(itinerario.user_id).name, User.find(itinerario.user_id)  %></h3>
+
+    <% end %>
+
+</ol>
+
+  <%= will_paginate @itinerarios %>
+
+

@@ -1,0 +1,54 @@
+<% provide :title, 'Nuovo Itinerario' %>
+<%= render 'layouts/header' %>
+
+<div id="tot_colonnasx_home">
+  <a href=<%= homepage_users_path %>>
+    <div class="img_logo">
+      <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+    </div>
+  </a>
+
+    <div class="dati_form">
+            <h2>Crea un nuovo itinerario</h2>
+
+            <%= form_for(@itinerario) do |f|%>
+                <%= render 'shared/error_messages', object: f.object%>
+
+                <%= f.label :nome_itinerario, 'Dai un nome al tuo itinerario:'%>
+                <%= f.text_field :nome_itinerario %><br />
+
+                <%= f.label :citta, 'Quale citta hai visitato?'%>
+                <%= f.text_field :citta %><br />
+
+                <%= f.label :num_giorni, 'Quanti giorni è durato il vostro viaggio? '%>
+                <%= f.text_field :num_giorni %><br />
+
+                <%= f.hidden_field :voto, value: 0 %>
+
+                <%= f.submit 'Avanti!', :type => :image, :src => "/assets/avanti.png" %>
+            <% end %>
+    </div>
+</div>
+
+<div id="tot_colonnadx_home">
+
+
+  <div class="canvasbottoni">
+
+
+    <canvas id="canvas_img" width="450" height="450">Non supportato</canvas>
+    <div id="titolo_nuovo_it"> <h3>Bastano tre semplici passi...</h3> </div>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById('canvas_img');
+        var ctx = canvas.getContext('2d');
+        var img= new Image();
+        img.src = "/assets/Maddie-piedi.jpg";
+        img.onload = function(){
+            ctx.drawImage(img,0,0);
+        }
+    </script>
+
+  </div>
+
+</div>

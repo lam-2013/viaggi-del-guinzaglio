@@ -1,0 +1,38 @@
+
+<% provide :title, 'Modifica Ristorante' %>
+
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+<div class="dati_form">
+
+  <h2>Modifica le informazioni sul ristorante <%= @ristorante.nome_ristorante %></h2>
+
+  <%= form_for(@ristorante) do |f|%>
+      <%= render 'shared/error_messages', object: f.object%>
+
+      <%= f.label :nome_ristorante, 'In quale ristorante avete mangiato?'%>
+      <%= f.text_field :nome_ristorante %><br />
+
+      <%= f.label :indirizzo_ristorante, 'Dove si trova?'%>
+      <%= f.text_field :indirizzo_ristorante %><br />
+
+      <%= f.label :spesa_ristorante, 'Quanto costa?'%>
+      <%= f.text_field :spesa_ristorante %><br />
+
+      <%= f.label :commenti_ristorante, 'Aggiungi i tuoi commenti: '%>
+      <%= f.text_area :commenti_ristorante %><br />
+
+      <%= f.hidden_field :itinerario_id, value: @ristorante.itinerario_id %>
+
+      <%= f.submit 'Salva', :action => "create", class: "brn btn-large btn-primary" %>
+  <% end %>
+</div>
+
+
+

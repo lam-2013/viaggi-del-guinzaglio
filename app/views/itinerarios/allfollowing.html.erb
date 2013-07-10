@@ -1,0 +1,29 @@
+<% provide :title, 'Itinerari following' %>
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+<h2>Tutti gli itinerari dei tuoi following</h2>
+
+
+<ol class="itinerari">
+  <span class="content">
+    <% @itinerarios = Itinerario.find_all_by_user_id(current_user.followed_users).paginate(page: params[:page], :per_page => 10)  %>
+    <% @itinerarios.each do |itinerario|  %>
+               <%= render itinerario %>
+        <h3>Itinerario di <%= link_to User.find(itinerario.user_id).name, User.find(itinerario.user_id)  %></h3>
+
+              <% end %>
+      </span>
+
+  <%= will_paginate @itinerarios %>
+
+
+</ol>
+
+
+

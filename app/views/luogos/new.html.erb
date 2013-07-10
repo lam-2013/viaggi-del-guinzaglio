@@ -1,0 +1,81 @@
+
+<% provide :title, 'Nuovo Luogo' %>
+
+<%= render 'layouts/header' %>
+
+
+
+<% @itinerario_id = @itinerario.id %>
+
+<div id="tot_colonnasx_home">
+  <a href=<%= homepage_users_path %>>
+    <div class="img_logo">
+      <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+    </div>
+  </a>
+
+
+    <div class="dati_form">
+
+      <h2>Cultura a quattro zampe:</h2>
+
+    <%= form_for(@luogo) do |f|%>
+        <%= render 'shared/error_messages', object: f.object%>
+
+        <%= f.label :nome_luogo, 'Quale luogo hai visitato?'%>
+        <%= f.text_field :nome_luogo %><br />
+
+        <%= f.label :indirizzo_luogo, 'Dove si trova?'%>
+        <%= f.text_field :indirizzo_luogo %><br />
+
+        <%= f.label :commenti_luogo, 'Aggiungi i tuoi commenti: '%>
+        <%= f.text_area :commenti_luogo %><br />
+
+        <%= f.hidden_field :itinerario_id, value: @itinerario_id %>
+
+        <%= f.submit 'Avanti!', :action => "create", :type => :image, :src => "/assets/avanti.png"%>
+    <% end %>
+
+    </div>
+</div>
+
+<div id="tot_colonnadx_home">
+
+  <div class="canvasbottoni">
+
+    <canvas id="canvas_img" width="450" height="450">Non supportato</canvas>
+    <div class="numeri">
+      <h3>Clicca sui bottoni!</h3>
+      <img src="/assets/icona_uno.png" width="90" id="uno_icona" class="numeri_bottoni" onclick="HotelImg()"/>
+      <img src="/assets/icona_due.png" width="90" id="due_icona" class="numeri_bottoni" onclick="RistoranteImg()"/>
+      <img src="/assets/icona_tre.png" width="90" id="tre_icona" class="numeri_bottoni" onclick="LuogoImg()"/>
+    </div>
+  </div>
+
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas_img');
+    var ctx = canvas.getContext('2d');
+    var img= new Image();
+    img.src = "/assets/Maddie-statua.jpeg";
+    img.onload = function(){
+        ctx.drawImage(img,0,0);
+    }
+    function HotelImg(){
+        var img= new Image();
+        img.src = "/assets/Maddie-letto.jpg";
+        ctx.drawImage(img,0,0);
+    }
+    function RisotanteImg(){
+        var img= new Image();
+        img.src = "/assets/Maddie-frigo.jpg";
+        ctx.drawImage(img,0,0);
+    }
+    function LuogoImg(){
+        var img= new Image();
+        img.src = "/assets/Maddie-statua.jpeg";
+        ctx.drawImage(img,0,0);
+    }
+</script>
+</div>
+
+

@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+    <div id="vote_form">
+      <% if current_user.vote?(@itinerario) %>
+          <%= render 'alreadyvoted' %>
+      <%else%>
+          <%= render 'vote', :itinerario => @itinerario %>
+      <% end %>
+    </div>
+<% end %>

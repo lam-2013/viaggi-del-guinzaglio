@@ -1,0 +1,2 @@
+$("#vote_form").html("<%= escape_javascript(render('itinerarios/alreadyvoted', :itinerario => @itinerario)) %> ")
+$("#Label").html("Voti ricevuti: <%= @itinerario.voto %>")

@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
         redirect_to homepage_users_path # redirect to user profile page (same of redirect_to user_path(user))
       else
 # handle wrong login information, by using flash.now that is specifically design for showing the flash on rendered page
-        #flash.now[:error] = 'Invalid email/password combination'
+        flash.now[:error] = 'Invalid email/password combination'
 # go back to the sign in page
 # render 'new'
         redirect_to signin_path

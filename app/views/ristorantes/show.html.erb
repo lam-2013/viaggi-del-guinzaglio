@@ -1,0 +1,31 @@
+<% provide :title, 'Dettagli Ristorante' %>
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+<div class="info_struttura">
+  <h2><%= @ristorante.nome_ristorante %>  </h2>
+  </br>
+  <h3>
+    Indirizzo: <%= @ristorante.indirizzo_ristorante %>
+    <br/>
+    <br/>
+    Costo/pasto: <%= @ristorante.spesa_ristorante %>
+    <br/>
+    <br/>
+    Commenti degli utenti: <%= @ristorante.commenti_ristorante %>
+  </h3>
+</div>
+
+<div class="img_struttura">
+  <img src="/assets/ristorante.jpg" width="600"/>
+
+</div>
+
+
+
+

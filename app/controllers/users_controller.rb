@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @user=User.new(params[:user])
     if @user.save
       #redirect_to '/home'
-      #flash[:success] = "Benvenuto!"
+      flash[:success] = "Benvenuto!"
       sign_in @user
       redirect_to homepage_users_path
     else
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       # handle a successful update
-      #flash[:success] = 'Profile updated'
+      flash[:success] = 'Profile updated'
       # re-login the user
       sign_in @user
       # go to the user profile

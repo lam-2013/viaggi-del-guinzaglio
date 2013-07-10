@@ -1,0 +1,32 @@
+<% provide :title, 'Modifica Luogo' %>
+
+<%= render 'layouts/header' %>
+
+<a href=<%= homepage_users_path %>>
+  <div class="img_logo">
+    <%= image_tag("Viaggi del Guizaglio_Logo7.png") %>
+  </div>
+</a>
+
+<div class="dati_form">
+
+  <h2>Modifica le informazioni su <%= @luogo.nome_luogo %></h2>
+
+  <%= form_for(@luogo) do |f|%>
+      <%= render 'shared/error_messages', object: f.object%>
+
+      <%= f.label :nome_luogo, 'Quale luogo avete visitato?'%>
+      <%= f.text_field :nome_luogo %><br />
+
+      <%= f.label :indirizzo_luogo, 'Dove si trova?'%>
+      <%= f.text_field :indirizzo_luogo %><br />
+
+      <%= f.label :commenti_luogo, 'Aggiungi i tuoi commenti: '%>
+      <%= f.text_area :commenti_luogo %><br />
+
+      <%= f.hidden_field :itinerario_id, value: @luogo.itinerario_id  %>
+
+      <%= f.submit 'Salva', class: "brn btn-large btn-primary" %>
+  <% end %>
+
+</div>

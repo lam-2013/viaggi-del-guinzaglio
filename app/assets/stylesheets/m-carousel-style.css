@@ -1,0 +1,28 @@
+/* Carousel controls: Pagination */
+.m-carousel-pagination {
+    padding-top: 10px;
+    text-align: center;
+
+}
+.m-carousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px ;
+    margin: 1px 0;
+    color: #333;
+    background-color: lightblue;
+    -webkit-transition: background-color 0.1s ease-in;
+    -moz-transition: background-color 0.1s ease-in;
+    -o-transition: background-color 0.1s ease-in;
+    transition: background-color 0.1s ease-in;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.m-carousel-pagination a:hover, .m-carousel-pagination a:focus {
+    text-decoration: none;
+    background-color: rgba(255,255,255,0.6);
+}
+.m-carousel-pagination a.m-active {
+    background-color: rgba(255,255,255,1);
+}

@@ -1,0 +1,5 @@
+<%= form_for(current_user.votatos.build(user_id: current_user.id, itinerario_id: @itinerario.id), remote: true) do|f| %>
+    <%= f.hidden_field :itinerario_id, :value => @itinerario.id, :name => :itinerario_id %>
+    <%= f.hidden_field :user_id, :value => current_user.id, :name => :user_id %>
+    <%= f.submit "Vota", :type => :image, :src => "/assets/zampa_vota.png"  %>
+<% end %>
