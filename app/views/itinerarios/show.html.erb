@@ -79,7 +79,7 @@
           <!-- Se mancano hotel, ristorante e luogo posso completare itinerario -->
           <% if current_user.id==@itinerario.user_id %>
 
-              <a href=<%= new_hotel_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="80"/></a>
+              <a href=<%= new_hotel_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="90"/></a>
 
           <% end %>
     </div>
@@ -112,7 +112,7 @@
                        <% if current_user.id==@itinerario.user_id %>
                   <br/>
                   <br/>
-                  <a href=<%= new_ristorante_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="80"/></a>
+                  <a href=<%= new_ristorante_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="90"/></a>
                 <%end%>
           <% end %>
           </h3>
@@ -144,7 +144,7 @@
                       <% if current_user.id==@itinerario.user_id %>
                       <br/>
                       <br/>
-                  <a href=<%= new_luogo_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="80"/></a>
+                  <a href=<%= new_luogo_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="90"/></a>
                 <%end%>
           <% end %>
           </h3>
