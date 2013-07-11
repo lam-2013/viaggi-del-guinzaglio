@@ -75,11 +75,12 @@
                 <% end %></h3>
       <% else %>
           <br/>
-
+          </br>
           <!-- Se mancano hotel, ristorante e luogo posso completare itinerario -->
           <% if current_user.id==@itinerario.user_id %>
 
-              <h2><%=  link_to 'Completa itinerario', new_hotel_path(:itinerario_id => @itinerario_id) %></h2>
+              <a href=<%= new_hotel_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="80"/></a>
+
           <% end %>
     </div>
       <% end %>
@@ -91,7 +92,7 @@
                 <% @ristorante = Ristorante.find_by_itinerario_id(@itinerario_id)%>
                 <h1><%= link_to Ristorante.find_by_itinerario_id(@itinerario_id).nome_ristorante, @ristorante %></h1>
                 <h3>in <%= Ristorante.find_by_itinerario_id(@itinerario_id).indirizzo_ristorante %>
-                <br/></br>
+                <br/><br/>
 
                 Spesa/notte: <%= Ristorante.find_by_itinerario_id(@itinerario_id).spesa_ristorante %>
                 <br/></br>
@@ -109,8 +110,9 @@
           <% else %>
                 <% if Hotel.find_by_itinerario_id(@itinerario_id)!=nil %>
                        <% if current_user.id==@itinerario.user_id %>
-                  </br>
-                       <%=  link_to 'Completa itinerario', new_ristorante_path(:itinerario_id => @itinerario_id) %>
+                  <br/>
+                  <br/>
+                  <a href=<%= new_ristorante_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="80"/></a>
                 <%end%>
           <% end %>
           </h3>
@@ -125,7 +127,7 @@
                 <% @luogo =  Luogo.find_by_itinerario_id(@itinerario_id)%>
                 <h1><%= link_to Luogo.find_by_itinerario_id(@itinerario_id).nome_luogo, @luogo %></h1>
                 <h3>in <%= Luogo.find_by_itinerario_id(@itinerario_id).indirizzo_luogo %>
-                <br/></br>
+                <br/><br/>
 
                   <% if Luogo.find_by_itinerario_id(@itinerario_id).commenti_luogo.empty? %>
                   <% else %>
@@ -140,8 +142,9 @@
          <% else %>
                 <% if Ristorante.find_by_itinerario_id(@itinerario_id)!=nil %>
                       <% if current_user.id==@itinerario.user_id %>
-                      </br>
-                      <%=  link_to 'Completa itinerario', new_luogo_path(:itinerario_id => @itinerario_id) %>
+                      <br/>
+                      <br/>
+                  <a href=<%= new_luogo_path(:itinerario_id => @itinerario_id) %>><img src="/assets/completa.png" width="80"/></a>
                 <%end%>
           <% end %>
           </h3>
