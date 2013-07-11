@@ -41,6 +41,11 @@
           <%= render @itinerarios %>
         </ul>
         <%= will_paginate @itinerarios %>
+
+    <%else%>
+        <br/>
+        <h3>Nessun risultato corrisponde alla tua ricerca.</h3>
+
     <% end %>
   </div>
 </div>
